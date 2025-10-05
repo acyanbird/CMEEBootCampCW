@@ -1,3 +1,4 @@
+# This code should be executed in same directory of E.coli.fasta file
 #1 
 wc -l *.fasta
 #2
@@ -7,5 +8,5 @@ tail -n +2 E.coli.fasta | tr -d '\n' | wc -m
 # print from second lines, delete the line break, and count the character
 #4 get rid of first line and line break first. Then grep output new line for each match then count.
 tail -n +2 E.coli.fasta | tr -d '\n' | grep -o ATGC | wc -l 
-#5 
-sequence=$(tail -n +2 E.coli.fasta | tr -d '\n'); a_count=$(echo "$sequence" | grep -o 'A' | wc -l); t_count=$(echo "$sequence" | grep -o 'T' | wc -l); g_count=$(echo "$sequence" | grep -o 'G' | wc -l); c_count=$(echo "$sequence" | grep -o 'C' | wc -l); echo "scale=10; ($a_count + $t_count) / ($g_count + $c_count)" | bc
+
+#5
