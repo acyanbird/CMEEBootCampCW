@@ -10,3 +10,4 @@ tail -n +2 E.coli.fasta | tr -d '\n' | wc -m
 tail -n +2 E.coli.fasta | tr -d '\n' | grep -o ATGC | wc -l 
 
 #5
+tail -n +2 E.coli.fasta | tr -d '\n' > temp &&  

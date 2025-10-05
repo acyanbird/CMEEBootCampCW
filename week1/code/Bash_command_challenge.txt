@@ -1,0 +1,10 @@
+#1 
+Using ls -sh instead of ls -s to output readable file size
+
+#2
+Using + will combine similar commands and execute them together. So instead of execute ls a; ls b;ls c, it will do ls a b c.
+
+#3
+find . -type f -print0 | xargs -0 ls -sh | sort -n | head -10
+
+Using null instead of \n to seperate outputs, than transfer outputs as arguments (using xargs) into ls. 

@@ -1,1 +1,2 @@
-My first line.\n My second line
+My first line.
+My second line
