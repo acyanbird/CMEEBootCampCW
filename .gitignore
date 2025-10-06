@@ -4,4 +4,4 @@ content/results/*
 content/[Ss]andbox/*
 *.code-workspace
 
-.pdf
+*.pdf
