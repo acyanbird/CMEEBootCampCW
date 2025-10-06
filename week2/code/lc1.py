@@ -9,6 +9,13 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
 # lists containing the latin names, common names and mean body masses for
 # each species in birds, respectively. 
 
+# Using list comprehensions to traverse the tuples in birds
+names = [bird[0] for bird in birds]
+common_names = [bird[1] for bird in birds]
+masses = [bird[2] for bird in birds]
+
+print("Latin names:", names, "\nCommon names:", common_names, "\nMean body masses:", masses)
+
 # (2) Now do the same using conventional loops (you can choose to do this 
 # before 1 !). 
 
@@ -17,4 +24,15 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
 # Latin names:
 # ['Passerculus sandwichensis', 'Delichon urbica', 'Junco phaeonotus', 'Junco hyemalis', 'Tachycineata bicolor']
 # ... etc.
+
+conventional_names = []
+conventional_common_names = []
+conventional_masses = []
+
+for bird in birds:
+    conventional_names.append(bird[0])
+    conventional_common_names.append(bird[1])
+    conventional_masses.append(bird[2])
+
+print("\nFor conventional way:\nLatin names:", conventional_names, "\nCommon names:", conventional_common_names, "\nMean body masses:", conventional_masses)
  
