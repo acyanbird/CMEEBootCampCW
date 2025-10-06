@@ -1,7 +1,7 @@
 *~
 *.tmp
-content/results/*
-content/[Ss]andbox/*
+week*/results/*
+week*/[Ss]andbox/*
 *.code-workspace
 
 *.pdf
