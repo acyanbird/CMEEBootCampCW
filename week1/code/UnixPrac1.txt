@@ -1,17 +1,17 @@
 # This code should be executed in same directory of E.coli.fasta file
 #1 
-wc -l *.fasta
+wc -l ../data/*.fasta
 #2
-tail -n +2 E.coli.fasta 
+tail -n +2 ../data/E.coli.fasta 
 #3 count words of E. coli
-tail -n +2 E.coli.fasta | tr -d '\n' | wc -m
+tail -n +2 ../data/E.coli.fasta | tr -d '\n' | wc -m
 # print from second lines, delete the line break, and count the character
 #4 get rid of first line and line break first. Then grep  output new line for each match then count.
-tail -n +2 E.coli.fasta | tr -d '\n' | grep -o ATGC | wc -l 
+tail -n +2 ../data/E.coli.fasta | tr -d '\n' | grep -o ATGC | wc -l 
 
 #5 Store the processed file into variable temp, Using same command as 4, then store the counting into different variables. After that using bc to calculate ratio, we set the scale to 6.
 
-temp=$(tail -n +2 E.coli.fasta | tr -d '\n');\
+temp=$(tail -n +2 ../data/E.coli.fasta | tr -d '\n');\
 A=$(echo "$temp" | grep -o A | wc -l) && \
 T=$(echo "$temp" | grep -o T | wc -l) && \
 C=$(echo "$temp" | grep -o C | wc -l) && \
