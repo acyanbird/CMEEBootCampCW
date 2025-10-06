@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+
+__author__ = 'Betty Liu (qql25@ic.ac.uk)'
+__version__ = '0.0.1'
+
+import sys
+
 def foo_1(x):
     return x ** 0.5
 
@@ -32,3 +39,22 @@ def foo_6(x): # Calculate the factorial of x in a different way; no if statement
         facto = facto * x
         x = x - 1
     return facto
+
+def main(argv):
+    # Test the functions
+    print(foo_1(30))
+    print(foo_2(5, 7))
+    print(foo_3(9, 2, 5))
+    print(foo_4(25))
+    print(foo_5(35))
+    print(foo_6(25))
+
+    # Get arguments from user
+    print("Number of arguments:", len(sys.argv))
+    # Print all arguments except the script name
+    print("The arguments are:", sys.argv[1:])
+    return 0
+
+if (__name__ == "__main__"):
+    status = main(sys.argv)
+    sys.exit(status)
