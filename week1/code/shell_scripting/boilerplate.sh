@@ -1,9 +1,9 @@
 #!/bin/sh
-# Author: Your Name your.login@imperial.ac.uk
+# Author: Betty Liu qql25@ic.ac.uk
 # Script: boilerplate.sh
 # Desc: simple boilerplate for shell scripts
 # Arguments: none
-# Date: Oct 2019
+# Date: Oct 2025
 
 echo -e "\nThis is a shell script! \n"
 

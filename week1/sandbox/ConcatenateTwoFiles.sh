@@ -2,7 +2,7 @@
 
 # Check if exactly two arguments are provided
 if [ $# -ne 3 ]; then
-    echo "Error: This script requires exactly two input files and one output file."
+    echo "Error: This script requires exactly two input files."
     exit 1
 fi
 
