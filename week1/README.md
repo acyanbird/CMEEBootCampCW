@@ -7,16 +7,26 @@ I include `Bash_command_challenge.txt` to answer question in [Bash command chall
 
 ### [Shell scripting](https://mulquabio.github.io/MQB/notebooks/ShellScripting.html)
 
-This section include 5 files. I put them into `shell_scripting` subfolder of code.  
-`boilerplate.sh` will output a line with new line at the begin and the end of line.  
-`variables.sh` deal with variables pass by arguments, and compare different between we pass 0 argument and 2 arguments. After improve the script, numbers of parameters pass to script is checked. And an error message will print out if incorrect number of parameters are passed to script.  
-`tabtocsv.sh` convert txt file into csv file by converting tab into commas. And save file by changing extension to csv.   
-`CountLines.sh` checks if there is only 1 file pass into script, and then using `wc` store number of lines into NumLines variable and print it to terminal.  
-`ConcatenateTwoFiles.sh` check there are three arguments pass to script, and then combine first two files content and cover them into output file.  
-`tiff2png.sh` will use `imagemagick` package convert tif file to png files. By sending command like `convert 1.tif 1.png`. It scan every tif image name, send them to for loop and convert them seperately.
+This section includes five files. I have placed them into the shell_scripting subfolder of `code`.  
+`boilerplate.sh` will output a line with new line at both the beginning and the end of the line.  
+`variables.sh` deals with variables passed by arguments and compares the difference between passing zero arguments and two arguments. After improving the script, the number of parameters passed to the script is checked, and an error message will print out if an incorrect number of parameters are passed.    
+`MyExampleScript.sh` This script demonstrates how to use variables in shell scripting. It shows two ways to display a greeting message using the $USER environmental variable. `$USER` variable will read the user name.  
+`tabtocsv.sh` convert txt file into csv file by changing tabs to commas. It saves the resulting file by changing the file extension to .csv.   
+`CountLines.sh` checks if exactly one file is passed to the script. If so, it uses the wc -l command to store the number of lines into the NumLines variable and then prints this number to the terminal.
+`ConcatenateTwoFiles.sh` checks if three arguments are passed to the script. If they are, it combines the content of the first two files and writes the combined content to the output file (the third argument).  
+`tiff2png.sh` uses the imagemagick package to convert TIF files to PNG files. It does this by scanning for every TIF image, sending the filenames to a for loop, and using a command like convert 1.tif 1.png to convert them separately.
 
 ### [Version control with Git](https://mulquabio.github.io/MQB/notebooks/Git.html)
-This section create git repo to store all these files. Basic instructions about git and collaberation.
+This section creates a Git repository to store all these files. It also teaches basic instructions on Git usage and collaboration.
 
 ### [Scientific documents with Latex](https://mulquabio.github.io/MQB/notebooks/LaTeX.html)
-This section introduce how to write document in latex format. Script is in latex subfolder of code. For `CompileLaTeX.sh` file, it run multiple steps of converting tex file to pdf. It gets the argument as file name, first get incomplete pdf and aux file. Then bibtex command produce bbl and blg file. The third and final pdflatex run then updates aux file and produce final version of pdf. Now cleaning up the files generated during the production process that are no longer needed.
+This section introduces how to write documents in LaTeX format. The script is located in the code/latex subfolder.
+
+For the CompileLaTeX.sh file, it runs multiple steps to convert a TeX file to a PDF. It takes the file name as an argument and follows these steps:
+1. The first run of pdflatex generates an incomplete PDF and an .aux file.
+
+2. The bibtex command uses the .aux file to produce the .bbl and .blg files.
+
+3. The third and final run of pdflatex updates the .aux file and generates the final version of the PDF.
+
+4. Finally, the script cleans up the temporary files (like .aux, .bbl, .blg, etc.) that were generated during the production process and are no longer needed.
