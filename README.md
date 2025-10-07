@@ -2,6 +2,8 @@
 
 This repository serves as a collection of all coursework completed for the bootcamp. All code, data files, and assignments from the course are included and have been organized into weekly directories.
 
+## Structure
+Each week's materials follow a consistent structure, containing `code`, `data`, and an empty results directory. The code directory holds all programs and scripts, while the data directory contains the files they use. A README file is also included to list and describe the function of each script.
 ```
 .
 ├── README.md
@@ -19,7 +21,7 @@ This repository serves as a collection of all coursework completed for the bootc
 ...
 ```
 
-This repository will contain only code and data, along with an empty results directory.
+
 
 ### Week 1
 
