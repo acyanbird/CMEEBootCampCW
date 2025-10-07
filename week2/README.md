@@ -33,3 +33,16 @@ This one shows if you using global keyword, it will only change the variable in 
 
 #### Example 7
 This demonstrates the intended use of global within a nested function. Because _a_global is defined at the top level, the inner function successfully modifies the original global variable, and the change is visible everywhere.
+
+### Basic IO
+This include `basic_io1.py` `basic_io2.py` and `basic_io3.py`.
+
+#### Basic_io1.py
+
+This file will open test.txt using read only mode. First for loop output every line and second for loop skip the blank line, only output line with content.
+
+#### Basic_io2.py
+This file store number from 0 to 99 to variable list_to_save. Open (or create) testout.txt in write mode. Print every number in a new line.
+
+#### Basic_io3.py
+This code uses Python's pickle module to save a dictionary object into a binary file. Using `rb` and `wb` 
