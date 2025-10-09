@@ -45,4 +45,4 @@ This file will open test.txt using read only mode. First for loop output every l
 This file store number from 0 to 99 to variable list_to_save. Open (or create) testout.txt in write mode. Print every number in a new line.
 
 #### Basic_io3.py
-This code uses Python's pickle module to save a dictionary object into a binary file. Using `rb` and `wb` 
+This code uses Python's pickle module to save a dictionary object into a binary file. Using `rb` and `wb` to read and write file in binary format. So it store a dictionary into text file and read it out to a variable. Then print the variable.
