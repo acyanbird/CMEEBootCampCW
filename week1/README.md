@@ -7,7 +7,7 @@ I include `Bash_command_challenge.txt` to answer question in [Bash command chall
 
 ### [Shell scripting](https://mulquabio.github.io/MQB/notebooks/ShellScripting.html)
 
-This section includes five files. I have placed them into the shell_scripting subfolder of `code`.  
+This section includes five files.   
 `boilerplate.sh` will output a line with new line at both the beginning and the end of the line.  
 `variables.sh` deals with variables passed by arguments and compares the difference between passing zero arguments and two arguments. After improving the script, the number of parameters passed to the script is checked, and an error message will print out if an incorrect number of parameters are passed.    
 `MyExampleScript.sh` This script demonstrates how to use variables in shell scripting. It shows two ways to display a greeting message using the `$USER` environmental variable. `$USER` variable will read the user name.  
@@ -25,7 +25,7 @@ This section includes five files. I have placed them into the shell_scripting su
 This section creates a Git repository to store all these files. It also teaches basic instructions on Git usage and collaboration.
 
 ### [Scientific documents with Latex](https://mulquabio.github.io/MQB/notebooks/LaTeX.html)
-This section introduces how to write documents in LaTeX format. The script is located in the code/latex subfolder.
+This section introduces how to write documents in LaTeX format. 
 
 For the CompileLaTeX.sh file, it runs multiple steps to convert a TeX file to a PDF. It takes the file name as an argument and follows these steps:
 1. The first run of pdflatex generates an incomplete PDF and an .aux file.
