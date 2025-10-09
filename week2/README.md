@@ -46,3 +46,15 @@ This file store number from 0 to 99 to variable list_to_save. Open (or create) t
 
 #### Basic_io3.py
 This code uses Python's pickle module to save a dictionary object into a binary file. Using `rb` and `wb` to read and write file in binary format. So it store a dictionary into text file and read it out to a variable. Then print the variable.
+
+### basic_csv.py
+This script first reads a CSV file using csv package, printing each row's contents to the console as it processes them. It then re-reads the same file to extract only the first and fifth columns. Finally, it writes this extracted two-column data into a new CSV file called bodymass.csv
+
+### using_name.py
+This file shows how the `__name__` varibale is used to show if this program is running or import by other program. If this module run by itself `__name__` should be `__main__`. Or it should be file name without py extension.
+
+### sysargv.py
+This file using sys package, output number of arguments user pass through. Name of script and print all the arguments.
+
+### control_flow.py
+This Python script defines several functions to demonstrate control flow statements for basic number theory tasks.  functions to check if a number is even or odd, find its largest divisor from the set {2, 3, 4, 5}, and test for prime number using loops. 

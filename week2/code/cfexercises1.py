@@ -53,7 +53,26 @@ def main(argv):
     print("Number of arguments:", len(sys.argv))
     # Print all arguments except the script name
     print("The arguments are:", sys.argv[1:])
-    return 0
+
+    # Test if user give one valid input
+    if len(sys.argv) == 4:
+        # Check if all arguments are digits
+        if all(arg.isdigit() for arg in sys.argv[1:]):
+            # test all the foo_x functions with the user input
+            print("Testing foo_x functions with user input:")
+            input_x = int(sys.argv[1])
+            input_y = int(sys.argv[2])
+            input_z = int(sys.argv[3])
+            print(foo_1(input_x))
+            print(foo_2(input_x, input_y))
+            print(foo_3(input_x, input_y, input_z))
+            print(foo_4(input_x))
+            print(foo_5(input_x))
+            print(foo_6(input_x))
+        else:
+            print("Please enter a valid positive integer.")
+    else:
+        print("Please enter exactly 3 arguments.")
 
 if (__name__ == "__main__"):
     status = main(sys.argv)
