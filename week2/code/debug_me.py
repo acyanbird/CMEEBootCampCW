@@ -1,3 +1,8 @@
+
+"""
+Debug sample code to identify and fix errors.
+"""
+
 def buggyfunc(x):
     y = x
     for i in range(x):

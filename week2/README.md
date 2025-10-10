@@ -1,6 +1,9 @@
 ## This week we include [Biological Computing in Python](https://mulquabio.github.io/MQB/notebooks/Python.html)
 Introduce basic operation of python, and how to debug, using R within Python.
 
+### `loops.py`
+These code snippets demonstrate two fundamental types of loops in Python: the for loop and the while loop.
+
 ### `MyExampleScript.py`
 this file defines a simple function named foo that calculates the square of any number passed to it. And show how to execute a code in one file.  
 
@@ -78,3 +81,10 @@ This script loops through a collection of data for several birds. For each bird,
 ### Writing a Program with Control flows
 
 Comparing to `control_flow.py`,  this code utilizes the doctest module to run automated tests. These tests are embedded directly within the function's docstring. When `doctest.testmod()` is called in or out of the file. It identifies these test cases by the `>>>` prompt. It compares this captured output to the expected output you provided on the very next line.
+
+## Practicals 2
+
+Calculate the alignment score between two sequences starting at a given position.
+Firstly read a csv file using csv package, get seq1 and seq2 from the file.
+Then define a function called `calculate_score`. This function compares two sequences, `s1` and `s2`, starting from the specified `startpoint` in `s1`. It calculates a score based on the number of matching bases and generates a string representation of the alignment.
+The main loop iterates through each possible starting position along s1. It checks if the current score (z) is greater than the best score found so far (my_best_score). If so, it updates both the score and the my_best_align variable, which is recreated by prepending dots (.) as a positional offset to the shorter sequence, s2.

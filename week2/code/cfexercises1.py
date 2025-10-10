@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+"""
+Functions exemplifying the use of control statements, loops, and user input.
+Test the functions with predefined values and user-provided arguments.
+"""
+
 __author__ = 'Betty Liu (qql25@ic.ac.uk)'
 __version__ = '0.0.1'
 

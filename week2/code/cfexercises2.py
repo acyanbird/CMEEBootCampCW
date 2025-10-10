@@ -1,5 +1,10 @@
 
 ########################
+
+"""
+Similar to cfexercises1.py, use of control statements, loops, and user input.
+"""
+
 def hello_1(x):
     # Print 'hello' for each multiple of 3
     for j in range(x):

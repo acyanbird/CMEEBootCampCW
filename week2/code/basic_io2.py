@@ -2,6 +2,11 @@
 # FILE OUTPUT
 #############################
 # Save the elements of a list to a file
+
+"""
+Save the numbers from 0 to 99 to a text file, each on a new line
+"""
+
 list_to_save = range(100)
 
 f = open('../sandbox/testout.txt','w')

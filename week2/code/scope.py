@@ -1,3 +1,7 @@
+"""
+This file contains many functions that demonstrate the scope of a variable from different perspectives, including local and global variables.
+"""
+
 # scope.py
 # Demonstration of variable scope in Python
 

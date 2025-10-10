@@ -1,3 +1,8 @@
+
+"""
+This code builds a dictionary by looping through each unique order name to use as a key. Using set to remove duplicates. Get the set of orders and for each unique order, it creates a set containing all the animals that belong to that group.
+"""
+
 taxa = [ ('Myotis lucifugus','Chiroptera'),
          ('Gerbillus henleyi','Rodentia',),
          ('Peromyscus crinitus', 'Rodentia'),

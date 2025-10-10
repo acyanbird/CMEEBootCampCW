@@ -1,3 +1,8 @@
+
+"""
+This code demonstrates the use of tuples and list comprehensions.
+"""
+
 birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
           ('Delichon urbica','House martin',19),
           ('Junco phaeonotus','Yellow-eyed junco',19.5),

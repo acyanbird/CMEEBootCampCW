@@ -2,6 +2,10 @@
 # STORING OBJECTS
 #############################
 # To save an object (even complex) for later use
+
+"""
+Store a dictionary to a file using the pickle module, then load it back and print it."""
+
 my_dictionary = {"a key": 10, "another key": 11}
 
 import pickle

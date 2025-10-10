@@ -1,7 +1,8 @@
 # !/usr/bin/env python3
 
-"""Description of this program or application.
-You can use several lines"""
+"""
+Format of a python program
+"""
 
 __appname__ = '[application name here]'
 __author__ = 'Your Name (your@email.address)'

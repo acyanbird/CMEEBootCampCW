@@ -1,9 +1,21 @@
 # Two example sequences to match
-seq2 = "ATCGCCGGATTACGGG"
-seq1 = "CAATTCGGAT"
+# seq2 = "ATCGCCGGATTACGGG"
+# seq1 = "CAATTCGGAT"
+import csv
 
 # Assign the longer sequence s1, and the shorter to s2
 # l1 is length of the longest, l2 that of the shortest
+
+"""
+Read two sequences from a CSV file and align them to find the best match.
+It will output the best alignment and its score.
+"""
+
+with open('../data/align_DNA_input.csv', 'r') as file:
+    csv_reader = csv.reader(file)
+    row = next(csv_reader)  # read the first row
+    seq1 = row[0]  
+    seq2 = row[1]  
 
 l1 = len(seq1)
 l2 = len(seq2)
@@ -19,10 +31,12 @@ else:
 # from arbitrary startpoint (chosen by user)
 def calculate_score(s1, s2, l1, l2, startpoint):
     matched = "" # to hold string displaying alignements
-    score = 0
+    score = 0   # to hold the score
     
+    # compare the two sequences by go through the second sequence
     for i in range(l2):
         if (i + startpoint) < l1:
+            # Only want to compare characters within the range of s1
             if s1[i + startpoint] == s2[i]: # if the bases match
                 matched = matched + "*"
                 score = score + 1
@@ -30,6 +44,7 @@ def calculate_score(s1, s2, l1, l2, startpoint):
                 matched = matched + "-"
 
     # some formatted output
+    #The alignment string uses '*' to indicate matches and '-' for mismatches.
     print("." * startpoint + matched)           
     print("." * startpoint + s2)
     print(s1)
@@ -50,8 +65,11 @@ my_best_score = -1
 for i in range(l1): # Note that you just take the last alignment with the highest score
     z = calculate_score(s1, s2, l1, l2, i)
     if z > my_best_score:
-        my_best_align = "." * i + s2 # think about what this is doing!
+        my_best_align = "." * i + s2 # Update best alignment with shifted dots
         my_best_score = z 
-print(my_best_align)
-print(s1)
-print("Best score:", my_best_score)
+
+# write result to file
+with open('../results/best_alignment.txt', 'w') as output_file:
+    output_file.write(my_best_align + '\n')
+    output_file.write(s1 + '\n')
+    output_file.write("Best score: " + str(my_best_score) + '\n')

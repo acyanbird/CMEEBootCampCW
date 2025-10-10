@@ -1,5 +1,9 @@
 import csv
 
+"""
+Read a CSV file and extract specific information. Then write selected data to a new CSV file.
+"""
+
 # Read a file containing:
 # 'Species','Infraorder','Family','Distribution','Body mass male (Kg)'
 with open('../data/testcsv.csv','r') as f:
