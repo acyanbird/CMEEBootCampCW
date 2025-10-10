@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Remove .tex extension if present
+echo "Plese input the filename:"
 filename=$(basename "$1" .tex)
 
 pdflatex $filename.tex

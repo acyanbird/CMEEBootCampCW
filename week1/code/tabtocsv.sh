@@ -16,6 +16,7 @@ fi
 
 filename=$(basename "$1")
 echo "Creating a comma delimited version of $1 ..."
-cat $1 | tr -s "\t" "," >> ../../results/$filename.csv
+# Create the output file since >> will not create a new file
+cat $1 | tr -s "\t" "," > ../results/$filename.csv
 echo "Done!"
 exit

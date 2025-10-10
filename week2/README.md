@@ -58,3 +58,23 @@ This file using sys package, output number of arguments user pass through. Name 
 
 ### control_flow.py
 This Python script defines several functions to demonstrate control flow statements for basic number theory tasks.  functions to check if a number is even or odd, find its largest divisor from the set {2, 3, 4, 5}, and test for prime number using loops. 
+
+## Practicals 1
+
+### Loops and List Comprehensions
+
+- `lc1.py`
+This one use comprehension and for loop to create 3 lists from list of tuples called birds. 
+
+- `lc2.py`
+This one also use comprehension with if statement and for loop to create lists. Therefore, it can select the element base on certain condition.
+
+- `dictionary.py`
+This code builds a dictionary by looping through each unique order name to use as a key. Using set to remove duplicates. Get the set of orders and for each unique order, it creates a set containing all the animals that belong to that group. 
+
+- `tuple.py`
+This script loops through a collection of data for several birds. For each bird, it pulls out its specific Latin name, common name, and mass. Finally, it prints these details.
+
+### Writing a Program with Control flows
+
+Comparing to `control_flow.py`,  this code utilizes the doctest module to run automated tests. These tests are embedded directly within the function's docstring. When `doctest.testmod()` is called in or out of the file. It identifies these test cases by the `>>>` prompt. It compares this captured output to the expected output you provided on the very next line.
