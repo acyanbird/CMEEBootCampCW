@@ -9,3 +9,6 @@ week*/[Ss]andbox/*
 
 *.pdf
 .Rproj.user
+.RData
+.Rhistory
+.Rapp.history
