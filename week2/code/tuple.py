@@ -1,3 +1,7 @@
+"""
+This script loops through a collection of data for several birds. For each bird, it pulls out its specific Latin name, common name, and mass. Finally, it prints these details.
+"""
+
 birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
           ('Delichon urbica','House martin',19),
           ('Junco phaeonotus','Yellow-eyed junco',19.5),

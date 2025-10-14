@@ -84,7 +84,13 @@ Comparing to `control_flow.py`,  this code utilizes the doctest module to run au
 
 ## Practicals 2
 
+### Align DNA sequences
+
 Calculate the alignment score between two sequences starting at a given position.
 Firstly read a csv file using csv package, get seq1 and seq2 from the file.
 Then define a function called `calculate_score`. This function compares two sequences, `s1` and `s2`, starting from the specified `startpoint` in `s1`. It calculates a score based on the number of matching bases and generates a string representation of the alignment.
 The main loop iterates through each possible starting position along s1. It checks if the current score (z) is greater than the best score found so far (my_best_score). If so, it updates both the score and the my_best_align variable, which is recreated by prepending dots (.) as a positional offset to the shorter sequence, s2.
+Then it will save the output to a file named `best_alignment.txt` in results folder.
+
+### Missing oaks problem
+The problem with "oaks" originates from the lookup in is_an_oak(name); "quercs" is misspelled and should be "quercus". The script reads species data from a CSV file. It then writes the rows identified as oaks to a new file.

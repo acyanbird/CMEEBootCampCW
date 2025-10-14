@@ -8,3 +8,4 @@ week*/[Ss]andbox/*
 !week*/results/.gitkeep
 
 *.pdf
+.Rproj.user
