@@ -14,8 +14,22 @@ def is_an_oak(name):
 
     >>> is_an_oak('Quercuss robur')
     True
+
+    >>> is_an_oak('sQuercuss robur')
+    True
     """
-    return name.lower().startswith('quercus')
+
+    genus = name.split()[0]
+    genus_set = set(genus.lower())
+    target_set = set('quercus')
+
+    # Find the number of characters in common
+    intersection_size = len(genus_set.intersection(target_set))
+
+    if intersection_size >= 5 and 4 <= len(genus) <= 9:
+        return True
+
+    return False
 
 def main(argv): 
     f = open('../data/TestOaksData.csv','r')

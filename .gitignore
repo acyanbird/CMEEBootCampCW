@@ -12,3 +12,5 @@ week*/[Ss]andbox/*
 .RData
 .Rhistory
 .Rapp.history
+
+__pycache__

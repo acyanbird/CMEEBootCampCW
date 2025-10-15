@@ -94,3 +94,8 @@ Then it will save the output to a file named `best_alignment.txt` in results fol
 
 ### Missing oaks problem
 The problem with "oaks" originates from the lookup in is_an_oak(name); "quercs" is misspelled and should be "quercus". The script reads species data from a CSV file. It then writes the rows identified as oaks to a new file.
+
+Using `python3 -m doctest -v oaks_debugme.py` to test if is_an_oak(name) works. I use set intersection to compare characters between the target 'quercus' and the input genus, checking if they share at least 5 common characters. And also validate genus length falls within a reasonable range of 4-8 characters.
+
+## Numpy
+Using conda doing package management. Activate conda base environment `source ~/miniconda3/bin/activate` after create week2 environment `conda create --name boot_w2 python=3.11` then `conda activate boot_w2` 

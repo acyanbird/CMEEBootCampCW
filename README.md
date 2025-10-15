@@ -30,3 +30,7 @@ Each week's materials follow a consistent structure, containing `code`, `data`, 
  ### Week 2
  
  For this week we go through basic [Python programming](https://mulquabio.github.io/MQB/notebooks/Python.html).
+
+
+ ### Week 3
+ This week is introduction about [R programming](https://mulquabio.github.io/MQB/notebooks/R.html#)
