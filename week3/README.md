@@ -31,3 +31,5 @@ Create a M 10x10 matrix of random numbers, then apply SomeOperation on each row 
 This script use 5 functions to show different way store mean of samples at the size of num.
 First defines a function to calculate the mean of a random sample drawn from a population. Then using 5 different way to store results. We can see result1, result2 and result5 is vector of number, and 3 and 4 is list. Result1 is the slowest because not pre allocate the space.
 
+### `try.R`
+Firstly it define a function doit to get mean of sample over input value. But only with unique sample > 30 will work otherwise it would get error. Then use try (with output error message) to continue whole program without exit.

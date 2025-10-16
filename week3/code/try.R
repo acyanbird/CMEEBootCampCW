@@ -1,4 +1,5 @@
 doit <- function(x) {
+  #
   temp_x <- sample(x, replace = TRUE)
   if(length(unique(temp_x)) > 30) {#only take mean if sample was sufficient
     print(paste("Mean of this sample was:", as.character(mean(temp_x))))
@@ -10,10 +11,11 @@ doit <- function(x) {
 
 set.seed(1345) # again, to get the same result for illustration
 
-popn <- rnorm(50)
+popn <- rnorm(50) # 50 random numbers
 
 hist(popn)
 
+# try(, silent = FALSE)  print error messages
 result <- lapply(1:15, function(i) try(doit(popn), FALSE))
 
 result <- vector("list", 15) #Preallocate/Initialize
