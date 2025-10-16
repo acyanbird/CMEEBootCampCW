@@ -1,7 +1,7 @@
-M <- matrix(runif(1000000),1000,1000)
+M <- matrix(runif(1000000),1000,1000) #
 
 SumAllElements <- function(M) {
-  Dimensions <- dim(M)
+  Dimensions <- dim(M)  # vector [1000, 1000]
   Tot <- 0
   for (i in 1:Dimensions[1]) {
     for (j in 1:Dimensions[2]) {
