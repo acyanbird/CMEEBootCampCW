@@ -23,7 +23,11 @@ echo
 ## Assigned Variables; Reading (multiple values) from user input:
 echo 'Enter two numbers separated by space(s)'
 read a b
-echo
+# Check if both a and b were provided - exit immediately if not
+if [ -z "$a" ] || [ -z "$b" ]; then
+    echo "Error: You must enter two numbers!"
+    exit 1
+fi
 echo 'you entered' $a 'and' $b '; Their sum is:'
 
 ## Assigned Variables; Command substitution

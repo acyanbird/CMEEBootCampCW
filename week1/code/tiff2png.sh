@@ -5,5 +5,5 @@
 for f in ../data/image_convert/*.tif; 
     do  
         echo "Converting $f"; 
-        convert "$f" "../../results/$(basename "$f" .tif).png"; 
+        convert "$f" "../results/$(basename "$f" .tif).png"; 
     done

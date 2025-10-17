@@ -35,3 +35,13 @@ For the CompileLaTeX.sh file, it runs multiple steps to convert a TeX file to a 
 3. The third and final run of pdflatex updates the .aux file and generates the final version of the PDF.
 
 4. Finally, the script cleans up the temporary files (like .aux, .bbl, .blg, etc.) that were generated during the production process and are no longer needed.
+
+
+## Fix bug from feedback
+
+### `tiff2png`
+Wrong relative path, alrady fixed
+### `CompileLaTeX.sh`
+Add a if condition to check if user input exactly 1 argument (file name)
+### `variables.sh`
+Add a check to exam weather a and b is empty

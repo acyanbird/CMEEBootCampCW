@@ -1,7 +1,12 @@
 #!/bin/bash
 
 # Remove .tex extension if present
-echo "Plese input the filename:"
+# Check if exactly one argument is provided
+if [ $# -ne 1 ]; then
+    echo "Error: Please input file name"
+    echo "Example:bash $0 document.tex"
+    exit 1
+fi
 filename=$(basename "$1" .tex)
 
 pdflatex $filename.tex
