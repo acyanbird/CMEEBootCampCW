@@ -3,6 +3,7 @@
 week*/results/*
 week*/[Ss]andbox/*
 *.code-workspace
+*.log
 
 # Keep directory structure with .gitkeep files
 !week*/results/.gitkeep

@@ -33,12 +33,17 @@ def foo_4(x):
         result = result * i
     return result
 
+# fix by adding base case and handling negative input
 def foo_5(x): # a recursive function that calculates the factorial of x
-    if x == 1:
+    if x == 1 or x == 0:
         return 1
+    elif x < 0:
+        return "Please enter a valid positive integer."
     return x * foo_5(x - 1)
      
 def foo_6(x): # Calculate the factorial of x in a different way; no if statement involved
+    if x < 0:
+        return "Please enter a valid positive integer."
     facto = 1
     while x >= 1:
         facto = facto * x
@@ -52,7 +57,11 @@ def main(argv):
     print(foo_3(9, 2, 5))
     print(foo_4(25))
     print(foo_5(35))
+    print(foo_5(-5))
+    print(foo_5(0))
     print(foo_6(25))
+    print(foo_6(-10))
+    print(foo_6(0))
 
     # Get arguments from user
     print("Number of arguments:", len(sys.argv))
