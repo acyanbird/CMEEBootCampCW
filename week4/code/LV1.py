@@ -1,7 +1,13 @@
+"""
+Lotka-Volterra model of consumer-resource population dynamics
+Display two plots:
+"""
 import matplotlib.pylab as p
 import numpy as np
 import scipy as sc
 import scipy.integrate as integrate
+
+
 
 r = 1.0
 a = 0.1 
@@ -43,6 +49,18 @@ p.legend(loc='best')
 p.xlabel('Time')
 p.ylabel('Population density')
 p.title('Consumer-Resource population dynamics')
-p.show()# To display the figure
 
-f1.savefig('../results/LV_model.pdf')
+f1.savefig('../results/LV1_model.pdf')
+
+p.close() # Close the figure window
+
+f2 = p.figure()
+# x for resource, y for consumer
+p.plot(pops[:,0], pops[:,1], 'r-')
+p.xlabel('Resource density')
+p.ylabel('Consumer density')
+p.grid()
+p.title('Consumer-Resource population dynamics')
+
+#p.show()
+f2.savefig('../results/LV1_RC.pdf')

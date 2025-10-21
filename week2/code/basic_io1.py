@@ -7,7 +7,7 @@
 Read data from a text file and print its contents twice, the second time skipping blank lines.
 """
 
-f = open('../sandbox/test.txt', 'r')
+f = open('../data/test.txt', 'r')
 # use "implicit" for loop:
 # if the object is a file, python will cycle over lines
 for line in f:
@@ -17,7 +17,7 @@ for line in f:
 f.close()
 
 # Same example, skip blank lines
-f = open('../sandbox/test.txt', 'r')
+f = open('../data/test.txt', 'r')
 for line in f:
     if len(line.strip()) > 0:
         print(line)

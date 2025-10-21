@@ -99,3 +99,7 @@ Using `python3 -m doctest -v oaks_debugme.py` to test if is_an_oak(name) works. 
 
 ## Numpy
 Using conda doing package management. Activate conda base environment `source ~/miniconda3/bin/activate` after create week2 environment `conda create --name boot_w2 python=3.11` then `conda activate boot_w2` 
+
+## Fix bug
+
+For basic input output, just change the directory sandbox into data. Then add if condition to debug me.

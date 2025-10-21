@@ -51,7 +51,7 @@ def calculate_score(s1, s2, l1, l2, startpoint):
     print(score) 
     print(" ")
 
-    return score
+    return score, matched
 
 # Test the function with some example starting points:
 # calculate_score(s1, s2, l1, l2, 0)
@@ -63,13 +63,15 @@ my_best_align = None
 my_best_score = -1
 
 for i in range(l1): # Note that you just take the last alignment with the highest score
-    z = calculate_score(s1, s2, l1, l2, i)
+    z, alignment_display = calculate_score(s1, s2, l1, l2, i)
     if z > my_best_score:
         my_best_align = "." * i + s2 # Update best alignment with shifted dots
-        my_best_score = z 
+        best_alignment_display = alignment_display
+        my_best_score = z
 
 # write result to file
 with open('../results/best_alignment.txt', 'w') as output_file:
+    output_file.write(best_alignment_display + '\n')
     output_file.write(my_best_align + '\n')
     output_file.write(s1 + '\n')
     output_file.write("Best score: " + str(my_best_score) + '\n')
