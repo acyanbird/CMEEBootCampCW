@@ -21,8 +21,23 @@ stochrick <- function(p0 = runif(1000, .5, 1.5), r = 1.2, K = 1, sigma = 0.2,num
   
 }
 
+stochrickvect <- function(p0 = runif(1000, .5, 1.5), r = 1.2, K = 1, sigma = 0.2,numyears = 100){
+  
+  N <- matrix(NA, numyears, length(p0))  #initialize empty matrix row is years col is num of polpulation
+  
+  N[1, ] <- p0
+      
+  for (yr in 2:numyears){ #for each pop, loop through the years
+  # Vectorized operation across all populations
+    N[yr, ] <- N[yr-1, ] * exp(r * (1 - N[yr - 1, ] / K) + rnorm(length(p0), 0, sigma))
+  }
+
+  return(N)
+  
+}
+
 # Now write another function called stochrickvect that vectorizes the above to
 # the extent possible, with improved performance: 
 
-# print("Vectorized Stochastic Ricker takes:")
-# print(system.time(res2<-stochrickvect()))
+print("Vectorized Stochastic Ricker takes:")
+print(system.time(res2<-stochrickvect()))

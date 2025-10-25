@@ -16,4 +16,4 @@ def run_my_funcs(x,y):
     my_join(x,y)
     return 0
 
-run_my_funcs(10000000,"My string")
+run_my_funcs(1000,"My string")
