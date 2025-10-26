@@ -8,7 +8,6 @@ week*/[Ss]andbox/*
 # Keep directory structure with .gitkeep files
 !week*/results/.gitkeep
 
-*.pdf
 .Rproj.user
 .RData
 .Rhistory
