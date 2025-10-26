@@ -17,3 +17,10 @@ week*/[Ss]andbox/*
 __pycache__
 
 w4j/*
+*.Rproj
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+*.out

@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{float}
+
+\title{Is Florida getting warmer?}
+\author{Betty Liu}
+\date{October 2025}
+
+\begin{document}
+
+\maketitle
+
+In the analysis of Florida's temperature over the years, a scatter plot was first created. A trend line was added to better visualize the pattern, which shows a clear increase in temperature over time.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{../data/FloridaTemp.png}
+    \caption{Florida scatter plot}
+    \label{fig:placeholder}
+\end{figure}
+
+The calculated correlation between year and temperature was 0.5331784, confirming an upward trend that Florida is getting warmer.
+
+To ensure this result was not a statistical fluke, a permutation test was conducted. By shuffling the data 100,000 times, a p-value of 0 was obtained. This indicates that the probability of this positive correlation occurring by chance is negligible.
+
+The chart below displays the correlation values from the 100,000 random shuffles. Their normal distribution confirms that the simulation method itself was sound.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{../data/FloridaPermutations.png}
+    \caption{Permutation Test: Correlation Coefficients}
+    \label{fig:Permutation Test: Correlation Coefficients}
+\end{figure}
+
+\end{document}

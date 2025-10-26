@@ -13,11 +13,13 @@ p1 <- ggplot(ats, aes(x = Year, y = Temp)) +
        y = "Temperature (°C)")
 
 # print(p1)
-ggsave("../results/FloridaTemp.png", plot = p1, width = 8, height = 6)
+ggsave("../data/FloridaTemp.png", plot = p1, width = 8, height = 6)
+# For PDF report usage
 
 
 correlation_coefficient <- cor(ats$Year, ats$Temp)
 print(correlation_coefficient)
+# 0.5331784
 
 set.seed(12345)  # set seed for reproducibility
 permutations_num <- 100000
@@ -36,7 +38,7 @@ p2 <- ggplot(data.frame(permutations), aes(x = permutations)) +
        y = "Frequency")
 
 # print(p2)
-ggsave("../results/FloridaPermutations.png", plot = p2, width = 8, height = 6)
+ggsave("../data/FloridaPermutations.png", plot = p2, width = 8, height = 6)
 
 # Calculate p-value
 p_value <- sum(permutations >= correlation_coefficient) / permutations_num
