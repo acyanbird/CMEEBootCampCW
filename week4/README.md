@@ -6,8 +6,11 @@
 
 ## [Data Management and Visualization](https://mulquabio.github.io/MQB/notebooks/Data_R.html)
 
-### `DataWrang.R`
+### `DataWrang.R` 
+This script loads the Pound Hill dataset and its metadata, then cleans the main data by transposing it and replacing empty strings with zeros. It proceeds to convert the data from a wide matrix format into a tidy, long-format data frame using the reshape2 package. 
 
+### `DataWrangTidy.R`
+This file use gather() method from tidyr to replace melt method use in reshape2. Because the pipe operator that could be used in tidyr is more straight forward.
 
 ## Jupyter book
 

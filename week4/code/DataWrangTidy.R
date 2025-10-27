@@ -2,6 +2,11 @@
 ################## Wrangling the Pound Hill Dataset ############
 ################################################################
 
+## Load required packages
+library(dplyr)
+library(tidyr)
+
+
 ############# Load the dataset ###############
 # header = false because the raw data don't have real headers
 MyData <- as.matrix(read.csv("../data/PoundHillData.csv", header = FALSE))
@@ -33,9 +38,12 @@ colnames(TempData) <- MyData[1,] # assign column names from original data
 ############# Convert from wide to long format  ###############
 require(reshape2) # load the reshape2 package
 
-?melt #check out the melt function
 
-MyWrangledData <- melt(TempData, id=c("Cultivation", "Block", "Plot", "Quadrat"), variable.name = "Species", value.name = "Count")
+## Using tidyr's gather function to go from wide to long format
+## O
+MyWrangledData <- TempData %>%
+  gather(key = "Species", value = "Count", 
+         -Cultivation, -Block, -Plot, -Quadrat)
 
 MyWrangledData[, "Cultivation"] <- as.factor(MyWrangledData[, "Cultivation"])
 MyWrangledData[, "Block"] <- as.factor(MyWrangledData[, "Block"])
