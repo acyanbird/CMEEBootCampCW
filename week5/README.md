@@ -4,3 +4,6 @@
 
 We create a `PP_Dists.R` script read data from a csv file. For the first 3 pdf file of plots, we get group name of interaction. Then using them into for loop create plot for each interaction (by create a subset of each interaction), and using par combine them together. Histogram is used to display distribution.
 
+For the csv file, an empty frame is provided and go through every feeding interaction. Calculate mean and median of prey, predator and ratio.
+
+Seperate for loop is used to create each file. It could be improve afterwards.

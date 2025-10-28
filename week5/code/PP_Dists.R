@@ -63,3 +63,45 @@ for (i in 1:num_interactions) {
 }
 
 graphics.off()
+
+## create csv file with data from each interaction
+
+#initialize empty data frame to store results
+PP_results <- data.frame(
+  Feeding.type = feeding_interactions,
+  Mean.log.Predator.mass = NA_real_,
+  Median.log.Predator.mass = NA_real_,
+  Mean.log.Prey.mass = NA_real_,
+  Median.log.Prey.mass = NA_real_,
+  Mean.log.Size.ratio = NA_real_,
+  Median.log.Size.ratio = NA_real_,
+  stringsAsFactors = FALSE
+)
+
+
+# Calculate means and medians for each feeding interaction
+for (i in 1:num_interactions) {
+  interaction <- feeding_interactions[i]
+  subset_df <- filter(MyDF, Type.of.feeding.interaction == interaction)
+
+  PP_results$Mean.log.Predator.mass[i] <- mean(log10(subset_df$Predator.mass), na.rm = TRUE)
+  PP_results$Median.log.Predator.mass[i] <- median(log10(subset_df$Predator.mass), na.rm = TRUE)
+  PP_results$Mean.log.Prey.mass[i] <- mean(log10(subset_df$Prey.mass), na.rm = TRUE)
+  PP_results$Median.log.Prey.mass[i] <- median(log10(subset_df$Prey.mass), na.rm = TRUE)
+  PP_results$Mean.log.Size.ratio[i] <- mean(log10(subset_df$Prey.mass / subset_df$Predator.mass), na.rm = TRUE)
+  PP_results$Median.log.Size.ratio[i] <- median(log10(subset_df$Prey.mass / subset_df$Predator.mass), na.rm = TRUE)
+} 
+
+# create human friendly csv file header
+colnames(PP_results) <- c(
+  "Feeding type",
+  "Mean log10 Predator mass",
+  "Median log10 Predator mass",
+  "Mean log10 Prey mass",
+  "Median log10 Prey mass",
+  "Mean log10 Size ratio",
+  "Median log10 Size ratio"
+)
+
+# Prevent row names from being written to the csv
+write.csv(PP_results, file = "../results/PP_Results.csv", row.names = FALSE)
