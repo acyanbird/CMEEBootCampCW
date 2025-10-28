@@ -11,3 +11,11 @@ We create a `PP_Dists.R` script read data from a csv file. For the first 3 pdf f
 For the csv file, an empty frame is provided and go through every feeding interaction. Calculate mean and median of prey, predator and ratio.
 
 Seperate for loop is used to create each file. It could be improve afterwards.
+
+### Second practical Visualizing Regression analyses
+
+Read the csv data and using facetting print multiple image share same x axis.
+
+Firstly turn mg into g, let all data use same unit. Then set scatter point in shape of `+`. Set the axes into log using scientfic notation. Then use facetting function split image by interaction type. 
+
+Then get every unique grouping combination. Using for loop to get each row of data that is belong to that group with more than 2 points. Using linear model and broom package to get every data require. Finally combine all data into a data frame. Write into single csv file.
