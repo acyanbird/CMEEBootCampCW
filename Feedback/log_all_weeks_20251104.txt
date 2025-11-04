@@ -1,0 +1,3693 @@
+======================================================================
+AUTOMATED FEEDBACK LOG
+======================================================================
+
+HOW TO READ THIS FEEDBACK:
+--------------------------
+1. This log contains detailed feedback on your code execution
+2. Each script is tested and results are shown with output and errors
+3. IMPORTANT: Read all the way to the END for a summary and debugging guidance
+4. The summary at the end will help you understand and fix any issues
+5. Scripts are run in a headless environment (no GUI applications)
+
+======================================================================
+
+Starting testing for Qianwen Liu
+
+Processing all weeks found in repository
+
+Your current Git repo size is about 50.06 MiB on disk
+
+Found directories: .git, week1, week4, week2, Feedback, week3, week5
+Found files: .pre-commit-config.yaml, .gitignore, sys, README.md
+
+Processing all weeks: week1, week4, week2, week3, week5
+
+Found 59 code files to test.
+
+Note: Expected file checking not performed (no FileList provided).
+Expected file checking will only be performed during final assessment.
+
+======================================================================
+Script: csvtospace.sh
+
+Contents:
+
+**********
+#!/bin/sh
+
+#Process one file each time
+
+echo "Usage: $0 <file>"
+echo "Please provide correct csv relative path."
+if [ $# -ne 1 ]; then
+    echo "Error: This script requires exactly one input file."
+    exit 1
+fi
+
+# Check if input file exists
+if [ ! -f "$1" ]; then
+    echo "Error: File '$1' not found!"
+    echo "Please check if the file exists."
+    exit 1
+fi
+
+filename=$(basename "$1")
+echo "Creating a comma delimited version of $1 ..."
+# Create the output file since >> will not create a new file
+cat $1 | tr "," " " > ../results/output_$filename
+echo "Done!"
+exit
+**********
+
+Output (first 500 chars):
+
+**********
+Usage: csvtospace.sh <file>
+Please provide correct csv relative path.
+Error: This script requires exactly one input file.
+
+**********
+No errors.
+======================================================================
+Script: CompileLaTeX.sh
+
+Contents:
+
+**********
+#!/bin/bash
+
+# Remove .tex extension if present
+# Check if exactly one argument is provided
+if [ $# -ne 1 ]; then
+    echo "Error: Please input file name"
+    echo "Example:bash $0 document.tex"
+    exit 1
+fi
+filename=$(basename "$1" .tex)
+
+pdflatex $filename.tex
+bibtex $filename
+pdflatex $filename.tex
+pdflatex $filename.tex
+evince $filename.pdf &
+
+## Cleanup
+rm *.aux
+rm *.log
+rm *.bbl
+rm *.blg
+**********
+
+Output (first 500 chars):
+
+**********
+Error: Please input file name
+Example:bash CompileLaTeX.sh document.tex
+
+**********
+No errors.
+======================================================================
+Script: tiff2png.sh
+
+Contents:
+
+**********
+# !/bin/bash
+
+# transform all .tif files in ../data/image_convert/ to .png files in results directory
+
+for f in ../data/image_convert/*.tif; 
+    do  
+        echo "Converting $f"; 
+        convert "$f" "../results/$(basename "$f" .tif).png"; 
+    done
+**********
+
+Output (first 500 chars):
+
+**********
+Converting ../data/image_convert/file_example_TIFF_10MB.tif
+Converting ../data/image_convert/file_example_TIFF_1MB.tif
+Converting ../data/image_convert/file_example_TIFF_5MB.tif
+
+**********
+No errors.
+======================================================================
+Script: boilerplate.sh
+
+Contents:
+
+**********
+#!/bin/sh
+# Author: Betty Liu qql25@ic.ac.uk
+# Script: boilerplate.sh
+# Desc: simple boilerplate for shell scripts
+# Arguments: none
+# Date: Oct 2025
+
+echo -e "\nThis is a shell script! \n"
+
+exit 1
+
+**********
+
+Output (first 500 chars):
+
+**********
+
+This is a shell script! 
+
+
+**********
+No errors.
+======================================================================
+Script: ConcatenateTwoFiles.sh
+
+Contents:
+
+**********
+# !/bin/bash
+
+echo "Usage: $0 <file1> <file2> <output_file>"
+echo "Please provide correct relative paths for all files."
+# Check if exactly two arguments are provided
+if [ $# -ne 3 ]; then
+    echo "Error: This script requires exactly two input files and one output file."
+    exit 1
+fi
+
+cat $1 > $3
+cat $2 >> $3
+echo "Merged File is"
+cat $3
+**********
+
+Output (first 500 chars):
+
+**********
+Usage: ConcatenateTwoFiles.sh <file1> <file2> <output_file>
+Please provide correct relative paths for all files.
+Error: This script requires exactly two input files and one output file.
+
+**********
+No errors.
+======================================================================
+Script: tabtocsv.sh
+
+Contents:
+
+**********
+#!/bin/sh
+# Author: Betty Liu qql25@ic.ac.uk
+# Script: tabtocsv.sh
+# Description: substitute the tabs in the files with commas
+#
+# Saves the output into a .csv file
+# Arguments: 1 -> tab delimited file
+# Date: Oct 2025
+
+echo "Usage: $0 <file>"
+echo "Please provide correct relative path."
+if [ $# -ne 1 ]; then
+    echo "Error: This script requires exactly one input file."
+    exit 1
+fi
+
+filename=$(basename "$1")
+echo "Creating a comma delimited version of $1 ..."
+# Create the output file since >> will not create a new file
+cat $1 | tr -s "\t" "," > ../results/$filename.csv
+echo "Done!"
+exit
+**********
+
+Output (first 500 chars):
+
+**********
+Usage: tabtocsv.sh <file>
+Please provide correct relative path.
+Error: This script requires exactly one input file.
+
+**********
+No errors.
+======================================================================
+Script: MyExampleScript.sh
+
+Contents:
+
+**********
+#!/bin/sh
+
+# Using 2 ways to print Hello <username>
+MSG1="Hello"
+MSG2=$USER
+echo "$MSG1 $MSG2"
+echo "Hello $USER"
+echo
+**********
+
+Output (first 500 chars):
+
+**********
+Hello mhasoba
+Hello mhasoba
+
+
+**********
+No errors.
+======================================================================
+Script: variables.sh
+
+Contents:
+
+**********
+# !/bin/sh
+
+## Illustrates the use of variables 
+
+# Special variables
+
+echo "This script was called with $# parameters"
+echo "The script's name is $0"
+echo "The arguments are $@"
+echo "The first argument is $1"
+echo "The second argument is $2"
+
+# Assigned Variables; Explicit declaration:
+MY_VAR='some string' 
+echo 'the current value of the variable is:' $MY_VAR
+echo
+echo 'Please enter a new string'
+read MY_VAR
+echo
+echo 'the current value of the variable is:' $MY_VAR
+echo
+
+## Assigned Variables; Reading (multiple values) from user input:
+echo 'Enter two numbers separated by space(s)'
+read a b
+# Check if both a and b were provided - exit immediately if not
+if [ -z "$a" ] || [ -z "$b" ]; then
+    echo "Error: You must enter two numbers!"
+    exit 1
+fi
+echo 'you entered' $a 'and' $b '; Their sum is:'
+
+## Assigned Variables; Command substitution
+MY_SUM=$(expr $a + $b)
+echo $MY_SUM
+**********
+
+Output (first 500 chars):
+
+**********
+This script was called with 0 parameters
+The script's name is variables.sh
+The arguments are 
+The first argument is 
+The second argument is 
+the current value of the variable is: some string
+
+Please enter a new string
+
+the current value of the variable is:
+
+Enter two numbers separated by space(s)
+Error: You must enter two numbers!
+
+**********
+No errors.
+======================================================================
+Script: CountLines.sh
+
+Contents:
+
+**********
+# !/bin/bash
+
+echo "Usage: $0 <file>"
+echo "Please provide correct relative paths for all files."
+if [ $# -ne 1 ]; then
+    echo "Error: This script requires exactly one input file."
+    exit 1
+fi
+
+NumLines=`wc -l < $1`
+echo "The file $1 has $NumLines lines"
+echo
+**********
+
+Output (first 500 chars):
+
+**********
+Usage: CountLines.sh <file>
+Please provide correct relative paths for all files.
+Error: This script requires exactly one input file.
+
+**********
+No errors.
+======================================================================
+Script: profileme2.py
+
+Contents:
+
+**********
+def my_squares(iters):
+    out = [i ** 2 for i in range(iters)]
+    return out
+
+def my_join(iters, string):
+    out = ''
+    for i in range(iters):
+        out += ", " + string
+    return out
+
+def run_my_funcs(x,y):
+    print(x,y)
+    my_squares(x)
+    my_join(x,y)
+    return 0
+
+run_my_funcs(10000000,"My string")
+**********
+
+Output (first 500 chars):
+
+**********
+10000000 My string
+
+**********
+No errors.
+======================================================================
+Script: profileme.py
+
+Contents:
+
+**********
+def my_squares(iters):
+    out = []
+    for i in range(iters):
+        out.append(i ** 2)
+    return out
+
+def my_join(iters, string):
+    out = ''
+    for i in range(iters):
+        out += string.join(", ")
+    return out
+
+def run_my_funcs(x,y):
+    print(x,y)
+    my_squares(x)
+    my_join(x,y)
+    return 0
+
+run_my_funcs(1000,"My string")
+**********
+
+Output (first 500 chars):
+
+**********
+1000 My string
+
+**********
+No errors.
+======================================================================
+Script: Florida.R
+
+Contents:
+
+**********
+rm(list=ls())
+
+library(ggplot2)
+
+load("../data/KeyWestAnnualMeanTemperature.RData")
+# ls()
+# class(ats)
+# head(ats)
+p1 <- ggplot(ats, aes(x = Year, y = Temp)) +
+  geom_point(color = "blue") + geom_smooth(method = "lm", color = "#ae1c1c", se = FALSE) +
+  labs(title = "Florida Temperature Over Years",
+       x = "Year",
+       y = "Temperature (°C)")
+
+# print(p1)
+ggsave("../data/FloridaTemp.png", plot = p1, width = 8, height = 6)
+# For PDF report usage
+
+
+correlation_coefficient <- cor(ats$Year, ats$Temp)
+print(correlation_coefficient)
+# 0.5331784
+
+set.seed(12345)  # set seed for reproducibility
+permutations_num <- 100000
+permutations <- numeric(permutations_num)  # number of permutations
+
+for (i in 1:permutations_num) {
+    shuffled_temp <- sample(ats$Temp)  # shuffle Temp values
+    permutations[i] <- cor(ats$Year, shuffled_temp)  # calculate correlation with shuffled Temp
+}
+
+# Plot the histogram of permutation results
+p2 <- ggplot(data.frame(permutations), aes(x = permutations)) +
+  geom_histogram(bins = ceiling(log2(length(permutations)) + 1), fill = "lightblue", color = "#994bb348") +
+  labs(title = "Permutation Test: Correlation Coefficients",
+       x = "Correlation Coefficient",
+       y = "Frequency")
+
+# print(p2)
+ggsave("../data/FloridaPermutations.png", plot = p2, width = 8, height = 6)
+
+# Calculate p-value
+p_value <- sum(permutations >= correlation_coefficient) / permutations_num
+
+print(p_value)
+**********
+
+Output (first 500 chars):
+
+**********
+[1] 0.5331784
+[1] 0
+
+**********
+Errors:
+**********
+`geom_smooth()` using formula = 'y ~ x'
+
+**********
+======================================================================
+Script: DataWrangTidy.R
+
+Contents:
+
+**********
+################################################################
+################## Wrangling the Pound Hill Dataset ############
+################################################################
+
+## Load required packages
+library(dplyr)
+library(tidyr)
+
+
+############# Load the dataset ###############
+# header = false because the raw data don't have real headers
+MyData <- as.matrix(read.csv("../data/PoundHillData.csv", header = FALSE))
+
+# header = true because we do have metadata headers
+MyMetaData <- read.csv("../data/PoundHillMetaData.csv", header = TRUE, sep = ";")
+
+############# Inspect the dataset ###############
+head(MyData)
+dim(MyData)
+str(MyData)
+fix(MyData) #you can also do this
+fix(MyMetaData)
+
+############# Transpose ###############
+# To get those species into columns and treatments into rows 
+MyData <- t(MyData) 
+head(MyData)
+dim(MyData)
+
+############# Replace species absences with zeros ###############
+MyData[MyData == ""] = 0
+
+############# Convert raw matrix to data frame ###############
+
+TempData <- as.data.frame(MyData[-1,],stringsAsFactors = F) #stringsAsFactors = F is important!
+colnames(TempData) <- MyData[1,] # assign column names from original data
+
+############# Convert from wide to long format  ###############
+require(reshape2) # load the reshape2 package
+
+
+## Using tidyr's gather function to go from wide to long format
+## O
+MyWrangledData <- TempData %>%
+  gather(key = "Species", value = "Count", 
+         -Cultivation, -Block, -Plot, -Quadrat)
+
+MyWrangledData[, "Cultivation"] <- as.factor(MyWrangledData[, "Cultivation"])
+MyWrangledData[, "Block"] <- as.factor(MyWrangledData[, "Block"])
+MyWrangledData[, "Plot"] <- as.factor(MyWrangledData[, "Plot"])
+MyWrangledData[, "Quadrat"] <- as.factor(MyWrangledData[, "Quadrat"])
+MyWrangledData[, "Count"] <- as.integer(MyWrangledData[, "Count"])
+
+str(MyWrangledData)
+head(MyWrangledData)
+dim(MyWrangledData)
+
+############# Exploring the data (extend the script below)  ###############
+
+**********
+
+Output (first 500 chars):
+
+**********
+     V1                     V2        V3        V4        V5        V6       
+[1,] "Cultivation"          "october" "october" "october" "october" "october"
+[2,] "Block"                "a"       "a"       "a"       "a"       "a"      
+[3,] "Plot"                 "1"       "1"       "1"       "1"       "1"      
+[4,] "Quadrat"              "Q1"      "Q2"      "Q3"      "Q4"      "Q5"     
+[5,] "Achillea millefolium" "4"       "8"       "3"       "20"      "6"      
+[6,] "Agrostis gigantea"    ""  
+**********
+Errors:
+**********
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Vim: Warning: Output is not to a terminal
+Vim: Warning: Input is not from a terminal
+
+
+**********
+======================================================================
+Script: DataWrang.R
+
+Contents:
+
+**********
+################################################################
+################## Wrangling the Pound Hill Dataset ############
+################################################################
+
+############# Load the dataset ###############
+# header = false because the raw data don't have real headers
+MyData <- as.matrix(read.csv("../data/PoundHillData.csv", header = FALSE))
+
+# header = true because we do have metadata headers
+MyMetaData <- read.csv("../data/PoundHillMetaData.csv", header = TRUE, sep = ";")
+
+############# Inspect the dataset ###############
+head(MyData)
+dim(MyData)
+str(MyData)
+fix(MyData) #you can also do this
+fix(MyMetaData)
+
+############# Transpose ###############
+# To get those species into columns and treatments into rows 
+MyData <- t(MyData) 
+head(MyData)
+dim(MyData)
+
+############# Replace species absences with zeros ###############
+MyData[MyData == ""] = 0
+
+############# Convert raw matrix to data frame ###############
+
+TempData <- as.data.frame(MyData[-1,],stringsAsFactors = F) #stringsAsFactors = F is important!
+colnames(TempData) <- MyData[1,] # assign column names from original data
+
+############# Convert from wide to long format  ###############
+require(reshape2) # load the reshape2 package
+
+?melt #check out the melt function
+
+MyWrangledData <- melt(TempData, id=c("Cultivation", "Block", "Plot", "Quadrat"), variable.name = "Species", value.name = "Count")
+
+MyWrangledData[, "Cultivation"] <- as.factor(MyWrangledData[, "Cultivation"])
+MyWrangledData[, "Block"] <- as.factor(MyWrangledData[, "Block"])
+MyWrangledData[, "Plot"] <- as.factor(MyWrangledData[, "Plot"])
+MyWrangledData[, "Quadrat"] <- as.factor(MyWrangledData[, "Quadrat"])
+MyWrangledData[, "Count"] <- as.integer(MyWrangledData[, "Count"])
+
+str(MyWrangledData)
+head(MyWrangledData)
+dim(MyWrangledData)
+
+############# Exploring the data (extend the script below)  ###############
+
+**********
+
+Output (first 500 chars):
+
+**********
+     V1                     V2        V3        V4        V5        V6       
+[1,] "Cultivation"          "october" "october" "october" "october" "october"
+[2,] "Block"                "a"       "a"       "a"       "a"       "a"      
+[3,] "Plot"                 "1"       "1"       "1"       "1"       "1"      
+[4,] "Quadrat"              "Q1"      "Q2"      "Q3"      "Q4"      "Q5"     
+[5,] "Achillea millefolium" "4"       "8"       "3"       "20"      "6"      
+[6,] "Agrostis gigantea"    ""  
+**********
+Errors:
+**********
+Vim: Warning: Output is not to a terminal
+Vim: Warning: Input is not from a terminal
+
+
+**********
+======================================================================
+Script: try.R
+
+Contents:
+
+**********
+doit <- function(x) {
+  #
+  temp_x <- sample(x, replace = TRUE)
+  if(length(unique(temp_x)) > 30) {#only take mean if sample was sufficient
+    print(paste("Mean of this sample was:", as.character(mean(temp_x))))
+  } 
+  else {
+    stop("Couldn't calculate mean: too few unique values!")
+  }
+}
+
+set.seed(1345) # again, to get the same result for illustration
+
+popn <- rnorm(50) # 50 random numbers
+
+hist(popn)
+
+# try(, silent = FALSE)  print error messages
+result <- lapply(1:15, function(i) try(doit(popn), FALSE))
+
+result <- vector("list", 15) #Preallocate/Initialize
+for(i in 1:15) {
+  result[[i]] <- try(doit(popn), FALSE)
+}
+**********
+
+Output (first 500 chars):
+
+**********
+[1] "Mean of this sample was: -0.11620822588674"
+[1] "Mean of this sample was: -0.0468516755995931"
+[1] "Mean of this sample was: -0.0890228211466614"
+[1] "Mean of this sample was: -0.124229742255296"
+[1] "Mean of this sample was: 0.0314144452816157"
+[1] "Mean of this sample was: -0.233476945796405"
+[1] "Mean of this sample was: -0.196681538928001"
+[1] "Mean of this sample was: 0.0146969612111605"
+[1] "Mean of this sample was: -0.234913159471725"
+[1] "Mean of this sample was: -0.0497464588165691
+**********
+Errors:
+**********
+Error in doit(popn) : Couldn't calculate mean: too few unique values!
+Error in doit(popn) : Couldn't calculate mean: too few unique values!
+Error in doit(popn) : Couldn't calculate mean: too few unique values!
+Error in doit(popn) : Couldn't calculate mean: too few unique values!
+Error in doit(popn) : Couldn't calculate mean: too few unique values!
+
+**********
+======================================================================
+Script: LV1.py
+
+Contents:
+
+**********
+"""
+Lotka-Volterra model of consumer-resource population dynamics
+Display two plots:
+"""
+import matplotlib.pylab as p
+import numpy as np
+import scipy as sc
+import scipy.integrate as integrate
+
+
+
+r = 1.0
+a = 0.1 
+z = 1.5
+e = 0.75
+t = np.linspace(0, 15, 1000)
+
+R0 = 10
+C0 = 5 
+RC0 = np.array([R0, C0])
+
+
+def dCR_dt(pops, t=0):
+
+    R = pops[0]
+    C = pops[1]
+    dRdt = r * R - a * R * C 
+    dCdt = -z * C + e * a * R * C
+    
+    return np.array([dRdt, dCdt])
+
+pops, infodict = integrate.odeint(dCR_dt, RC0, t, full_output=True)
+
+
+# y = np.array([5, 20, 18, 19, 18, 7, 4]) # The y values; can also use a python list here
+# p.plot(y)
+# p.savefig('../results/plot.png', dpi=300, bbox_inches='tight')
+# p.show()
+
+t = np.linspace(0, 15, 1000)
+sc.stats.norm.rvs(size = 10)
+
+f1 = p.figure()
+
+p.plot(t, pops[:,0], 'g-', label='Resource density') # Plot
+p.plot(t, pops[:,1]  , 'b-', label='Consumer density')
+p.grid()
+p.legend(loc='best')
+p.xlabel('Time')
+p.ylabel('Population density')
+p.title('Consumer-Resource population dynamics')
+
+f1.savefig('../results/LV1_model.pdf')
+
+p.close() # Close the figure window
+
+f2 = p.figure()
+# x for resource, y for consumer
+p.plot(pops[:,0], pops[:,1], 'r-')
+p.xlabel('Resource density')
+p.ylabel('Consumer density')
+p.grid()
+p.title('Consumer-Resource population dynamics')
+
+#p.show()
+f2.savefig('../results/LV1_RC.pdf')
+
+**********
+
+Output (first 500 chars):
+
+**********
+
+**********
+No errors.
+======================================================================
+Script: browse.R
+
+Contents:
+
+**********
+Exponential <- function(N0 = 1, r = 1, generations = 10) {
+  # Runs a simulation of exponential growth
+  # Returns a vector of length generations
+  
+  N <- rep(NA, generations)    # Creates a vector of NA
+  
+  N[1] <- N0
+  for (t in 2:generations) {
+    N[t] <- N[t-1] * exp(r)
+    browser()
+  }
+  return (N)
+}
+
+plot(Exponential(), type="l", main="Exponential growth")
+**********
+
+Output (first 500 chars):
+
+**********
+Called from: Exponential()
+debug: N[t] <- N[t - 1] * exp(r)
+debug: browser()
+debug: N[t] <- N[t - 1] * exp(r)
+debug: browser()
+debug: N[t] <- N[t - 1] * exp(r)
+debug: browser()
+debug: N[t] <- N[t - 1] * exp(r)
+debug: browser()
+debug: N[t] <- N[t - 1] * exp(r)
+debug: browser()
+debug: N[t] <- N[t - 1] * exp(r)
+debug: browser()
+debug: N[t] <- N[t - 1] * exp(r)
+debug: browser()
+debug: N[t] <- N[t - 1] * exp(r)
+debug: browser()
+
+**********
+No errors.
+======================================================================
+Script: LV2.py
+
+Contents:
+
+**********
+import matplotlib.pylab as p
+import numpy as np
+import scipy as sc
+import scipy.integrate as integrate
+import sys
+
+# r = 1.0
+# a = 0.1 
+# z = 1.5
+# e = 0.75
+# K = 50  # Carrying capacity
+
+
+
+def dCR_dt(pops, t=0):
+
+    R = pops[0]
+    C = pops[1]
+    dRdt = r * R * (1 - R/K) - a * R * C 
+    dCdt = -z * C + e * a * R * C
+    
+    return np.array([dRdt, dCdt])
+
+
+
+# y = np.array([5, 20, 18, 19, 18, 7, 4]) # The y values; can also use a python list here
+# p.plot(y)
+# p.savefig('../results/plot.png', dpi=300, bbox_inches='tight')
+# p.show()
+
+
+def main():
+    R0 = 10
+    C0 = 5 
+    RC0 = np.array([R0, C0])
+    global r, a, z, e, K
+    if len(sys.argv) == 6:
+        r = float(sys.argv[1])
+        a = float(sys.argv[2])
+        z = float(sys.argv[3])
+        e = float(sys.argv[4])
+        K = float(sys.argv[5])
+    else:
+        print("Incorrect usage. Please provide 5 parameters: r, a, z, e, K.\n Usage: python LV2.py r a z e K")
+        sys.exit(1)
+
+    #t = np.linspace(0, 60, 4000)
+    t = np.linspace(0, 15, 1000)
+
+    sc.stats.norm.rvs(size = 10)
+    pops, infodict = integrate.odeint(dCR_dt, RC0, t, full_output=True)
+
+
+    f1 = p.figure()
+
+    p.plot(t, pops[:,0], 'g-', label='Resource density') # Plot
+    p.plot(t, pops[:,1]  , 'b-', label='Consumer density')
+    p.grid()
+    p.legend(loc='best')
+    p.xlabel('Time')
+    p.ylabel('Population density')
+    p.title(f'Consumer-Resource population dynamics\nr={r}, a={a}, z={z}, e={e}, K={K}')
+
+
+    f1.savefig('../results/LV2_model.pdf')
+    f2 = p.figure()
+    # x for resource, y for consumer
+    p.plot(pops[:,0], pops[:,1], 'r-')
+    p.xlabel('Resource density')
+    p.ylabel('Consumer density')
+    p.grid()
+    p.title('Consumer-Resource population dynamics')
+
+    #p.show()
+    f2.savefig('../results/LV2_RC.pdf')
+
+    
+
+    
+if __name__ == "__main__":
+    main()
+**********
+
+Output (first 500 chars):
+
+**********
+Incorrect usage. Please provide 5 parameters: r, a, z, e, K.
+ Usage: python LV2.py r a z e K
+
+**********
+No errors.
+======================================================================
+Script: MyExampleScript.py
+
+Contents:
+
+**********
+"""
+Computes the square of the input value and prints the result.
+""" 
+def foo(x):
+    x *= x # same as x = x*x
+    print(x)
+
+foo(2)
+**********
+
+Output (first 500 chars):
+
+**********
+4
+
+**********
+No errors.
+======================================================================
+Script: lc2.py
+
+Contents:
+
+**********
+"""
+This code demonstrates the use of tuples and list comprehensions.
+"""
+
+# Average UK Rainfall (mm) for 1910 by month
+# http://www.metoffice.gov.uk/climate/uk/datasets
+rainfall = (('JAN',111.4),
+            ('FEB',126.1),
+            ('MAR', 49.9),
+            ('APR', 95.3),
+            ('MAY', 71.8),
+            ('JUN', 70.2),
+            ('JUL', 97.1),
+            ('AUG',140.2),
+            ('SEP', 27.0),
+            ('OCT', 89.4),
+            ('NOV',128.4),
+            ('DEC',142.2),
+           )
+
+# (1) Use a list comprehension to create a list of month,rainfall tuples where
+# the amount of rain was greater than 100 mm.
+
+rainfall_over_100 = [ (month, rainfall) for month, rainfall in rainfall if rainfall > 100]
+
+print(rainfall_over_100)
+ 
+
+# (2) Use a list comprehension to create a list of just month names where the
+# amount of rain was less than 50 mm. 
+
+rainfall_under_50 = [ month for month, rainfall in rainfall if rainfall < 50]
+print(rainfall_under_50)
+
+# (3) Now do (1) and (2) using conventional loops (you can choose to do 
+# this before 1 and 2 !). 
+
+# A good example output is:
+#
+# Step #1:
+# Months and rainfall values when the amount of rain was greater than 100mm:
+# [('JAN', 111.4), ('FEB', 126.1), ('AUG', 140.2), ('NOV', 128.4), ('DEC', 142.2)]
+# ... etc.
+
+conventional_rainfall_over_100 = []
+conventional_rainfall_under_50 = []
+
+for month, rain in rainfall:
+    if rain > 100:
+        conventional_rainfall_over_100.append((month, rain))
+    if rain < 50:
+        conventional_rainfall_under_50.append(month)
+
+print("For conventional loops:")
+print(conventional_rainfall_over_100)
+print(conventional_rainfall_under_50)
+
+**********
+
+Output (first 500 chars):
+
+**********
+[('JAN', 111.4), ('FEB', 126.1), ('AUG', 140.2), ('NOV', 128.4), ('DEC', 142.2)]
+['MAR', 'SEP']
+For conventional loops:
+[('JAN', 111.4), ('FEB', 126.1), ('AUG', 140.2), ('NOV', 128.4), ('DEC', 142.2)]
+['MAR', 'SEP']
+
+**********
+No errors.
+======================================================================
+Script: oaks.py
+
+Contents:
+
+**********
+## Finds just those taxa that are oak trees from a list of species
+
+taxa = [ 'Quercus robur',
+         'Fraxinus excelsior',
+         'Pinus sylvestris',
+         'Quercus cerris',
+         'Quercus petraea',
+       ]
+
+def is_an_oak(name):
+    return name.lower().startswith('quercus ')
+
+## Using for loops
+oaks_loops = set()
+for species in taxa:
+    if is_an_oak(species):
+        oaks_loops.add(species)
+print(oaks_loops)
+
+## Using list comprehensions   
+oaks_lc = set([species for species in taxa if is_an_oak(species)])
+print(oaks_lc)
+
+## Get names in UPPER CASE using for loops
+oaks_loops = set()
+for species in taxa:
+    if is_an_oak(species):
+        oaks_loops.add(species.upper())
+print(oaks_loops)
+
+## Get names in UPPER CASE using list comprehensions
+oaks_lc = set([species.upper() for species in taxa if is_an_oak(species)])
+print(oaks_lc)
+**********
+
+Output (first 500 chars):
+
+**********
+{'Quercus robur', 'Quercus petraea', 'Quercus cerris'}
+{'Quercus robur', 'Quercus petraea', 'Quercus cerris'}
+{'QUERCUS CERRIS', 'QUERCUS PETRAEA', 'QUERCUS ROBUR'}
+{'QUERCUS CERRIS', 'QUERCUS PETRAEA', 'QUERCUS ROBUR'}
+
+**********
+No errors.
+======================================================================
+Script: dictionary.py
+
+Contents:
+
+**********
+
+"""
+This code builds a dictionary by looping through each unique order name to use as a key. Using set to remove duplicates. Get the set of orders and for each unique order, it creates a set containing all the animals that belong to that group.
+"""
+
+taxa = [ ('Myotis lucifugus','Chiroptera'),
+         ('Gerbillus henleyi','Rodentia',),
+         ('Peromyscus crinitus', 'Rodentia'),
+         ('Mus domesticus', 'Rodentia'),
+         ('Cleithrionomys rutilus', 'Rodentia'),
+         ('Microgale dobsoni', 'Afrosoricida'),
+         ('Microgale talazaci', 'Afrosoricida'),
+         ('Lyacon pictus', 'Carnivora'),
+         ('Arctocephalus gazella', 'Carnivora'),
+         ('Canis lupus', 'Carnivora'),
+        ]
+
+# Write a python script to populate a dictionary called taxa_dic derived from
+# taxa so that it maps order names to sets of taxa and prints it to screen.
+# 
+# An example output is:
+#  
+# 'Chiroptera' : set(['Myotis lucifugus']) ... etc. 
+# OR, 
+# 'Chiroptera': {'Myotis  lucifugus'} ... etc
+
+#### Your solution here #### 
+
+taxa_dic = {}   # create empty dictionary
+
+for species, order in taxa:   # traverse the list
+    taxa_dic.setdefault(order, set()).add(species)  #  If order not in dictionary, add it with empty set, then add species to the set
+    # If order already in dictionary, just add species to the set
+
+print(taxa_dic)  # print the dictionary
+
+# Now write a list comprehension that does the same (including the printing after the dictionary has been created)  
+ 
+#### Your solution here #### 
+
+orders = set(order for _, order in taxa)  # get unique orders, get order and species from taxa, then using set() to get unique orders
+
+# Create dictionary using dictionary comprehension
+# For o in orders is the main loop in comprehension, get every order.
+# Make the order as key of dictionary, get species when its order match o 
+# Create a set of species matching order
+
+taxa_dic_comp = { o : { species for species, order in taxa if order == o } for o in orders }
+
+print(taxa_dic_comp)  # print the dictionary created by comprehension
+**********
+
+Output (first 500 chars):
+
+**********
+{'Chiroptera': {'Myotis lucifugus'}, 'Rodentia': {'Mus domesticus', 'Peromyscus crinitus', 'Cleithrionomys rutilus', 'Gerbillus henleyi'}, 'Afrosoricida': {'Microgale dobsoni', 'Microgale talazaci'}, 'Carnivora': {'Lyacon pictus', 'Arctocephalus gazella', 'Canis lupus'}}
+{'Chiroptera': {'Myotis lucifugus'}, 'Rodentia': {'Mus domesticus', 'Peromyscus crinitus', 'Cleithrionomys rutilus', 'Gerbillus henleyi'}, 'Afrosoricida': {'Microgale dobsoni', 'Microgale talazaci'}, 'Carnivora': {'Lyacon pictus
+**********
+No errors.
+======================================================================
+Script: cfexercises2.py
+
+Contents:
+
+**********
+
+########################
+
+"""
+Similar to cfexercises1.py, use of control statements, loops, and user input.
+"""
+
+def hello_1(x):
+    # Print 'hello' for each multiple of 3
+    for j in range(x):
+        if j % 3 == 0:
+            print('hello')
+    print(' ')
+
+hello_1(12)
+
+########################
+def hello_2(x):
+    # Print 'hello' for each multiple of 4 or 5
+    for j in range(x):
+        if j % 5 == 3:
+            print('hello')
+        elif j % 4 == 3:
+            print('hello')
+    print(' ')
+
+hello_2(12)
+
+########################
+def hello_3(x, y):
+    # Print 'hello' for each number between x and y
+    for i in range(x, y):
+        print('hello')
+    print(' ')
+
+hello_3(3, 17)
+
+########################
+def hello_4(x):
+    # Print 'hello' while x is not equal to 15
+    while x != 15:
+        print('hello')
+        x = x + 3
+    print(' ')
+
+hello_4(0)
+
+########################
+def hello_5(x):
+    # Print 'hello' while x is less than 100
+    # Get initial x and increment x by 1 each iteration
+    while x < 100:
+        if x == 31:
+            # Print 'hello' 7 times if x equals 31
+            for k in range(7):
+                print('hello')
+        elif x == 18:
+            # print hello 1 time if x equals 18
+            print('hello')
+        x = x + 1
+    print(' ')
+
+hello_5(12)
+
+# WHILE loop with BREAK
+def hello_6(x, y):
+    # Print 'hello' while x is True and break when y equals 6
+    while x: # while x is True
+        print("hello! " + str(y))
+        y += 1 # increment y by 1 
+        if y == 6:
+            break
+    print(' ')
+
+hello_6 (True, 0)
+**********
+
+Output (first 500 chars):
+
+**********
+hello
+hello
+hello
+hello
+ 
+hello
+hello
+hello
+hello
+ 
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+ 
+hello
+hello
+hello
+hello
+hello
+ 
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+ 
+hello! 0
+hello! 1
+hello! 2
+hello! 3
+hello! 4
+hello! 5
+ 
+
+**********
+No errors.
+======================================================================
+Script: using_name.py
+
+Contents:
+
+**********
+# !/usr/bin/env python3
+# Filename: using_name.py
+"""
+This file shows how the `__name__` varibale is used to show if this program is running or import by other program. If this module run by itself `__name__` should be `__main__`. Or it should be file name without py extension.
+"""
+
+if __name__ == '__main__':
+    print('This program is being run by itself!')
+else:
+    print('I am being imported from another script/program/module!')
+
+print("This module's name is: " + __name__)
+**********
+
+Output (first 500 chars):
+
+**********
+This program is being run by itself!
+This module's name is: __main__
+
+**********
+No errors.
+======================================================================
+Script: basic_io3.py
+
+Contents:
+
+**********
+#############################
+# STORING OBJECTS
+#############################
+# To save an object (even complex) for later use
+
+"""
+Store a dictionary to a file using the pickle module, then load it back and print it."""
+
+my_dictionary = {"a key": 10, "another key": 11}
+
+import pickle
+
+f = open('../data/testp.p','wb') ## note the b: accept binary files
+pickle.dump(my_dictionary, f)
+f.close()
+
+## Load the data again
+f = open('../data/testp.p','rb')
+another_dictionary = pickle.load(f)
+f.close()
+
+print(another_dictionary)
+
+**********
+
+Output (first 500 chars):
+
+**********
+{'a key': 10, 'another key': 11}
+
+**********
+No errors.
+======================================================================
+Script: scope.py
+
+Contents:
+
+**********
+"""
+This file contains many functions that demonstrate the scope of a variable from different perspectives, including local and global variables.
+"""
+
+# scope.py
+# Demonstration of variable scope in Python
+
+# --- Part 1: Local variables and function scope ---
+
+print("\n--- Example 1: Variables outside and inside a loop ---")
+i = 1
+x = 0
+for i in range(10):
+    x += 1
+print(i)  # 9
+print(x)  # 10
+
+print("\n--- Example 2: Variables inside a function ---")
+i = 1
+x = 0
+def a_function(y):
+    x = 0
+    for i in range(y):
+        x += 1
+    return x
+
+a_function(10)
+print(i)  # still 1
+print(x)  # still 0
+
+# explicitly reassign the result to x
+x = a_function(10)
+print("Updated x after reassignment:", x)
+
+# --- Part 2: Global variables ---
+
+print("\n--- Example 3: Global and local variable contrast ---")
+_a_global = 10  # a global variable
+
+if _a_global >= 5:
+    _b_global = _a_global + 5  # also global
+
+print("Before calling a_function, outside the function, _a_global =", _a_global)
+print("Before calling a_function, outside the function, _b_global =", _b_global)
+
+def a_function():
+    _a_global = 4  # local variable
+    if _a_global >= 4:
+        _b_global = _a_global + 5  # local variable
+    _a_local = 3
+    print("Inside function, _a_global =", _a_global)
+    print("Inside function, _b_global =", _b_global)
+    print("Inside function, _a_local =", _a_local)
+
+a_function()
+
+print("After calling a_function, outside, _a_global (still) =", _a_global)
+print("After calling a_function, outside, _b_global (still) =", _b_global)
+try:
+    print("After calling a_function, outside, _a_local =", _a_local)
+except NameError as e:
+    print("NameError:", e)
+
+# --- Example 4: Using global variable inside a function without redefining ---
+print("\n--- Example 4: Accessing global variable from inside a function ---")
+_a_global = 10
+def a_function():
+    _a_local = 4
+    print("Inside function, _a_local =", _a_local)
+    print("Inside function, _a_global =", _a_global)
+
+a_function()
+print("Outside function, _a_global =", _a_global)
+
+# --- Example 5: Modifying a global variable using 'global' keyword ---
+print("\n--- Example 5: Using 'global' keyword ---")
+_a_global = 10
+print("Before calling a_function, outside, _a_global =", _a_global)
+
+def a_function():
+    global _a_global
+    _a_global = 5
+    _a_local = 4
+    print("Inside function, _a_global =", _a_global)
+    print("Inside function, _a_local =", _a_local)
+
+a_function()
+print("After calling a_function, outside, _a_global now =", _a_global)
+
+# --- Example 6: Nested function and global keyword ---
+print("\n--- Example 6: Nested functions and global keyword (version 1) ---")
+def a_function():
+    _a_global = 10
+    def _a_function2():
+        global _a_global
+        _a_global = 20
+    print("Before calling _a_function2, _a_global =", _a_global)
+    _a_function2()
+    print("After calling _a_function2, _a_global =", _a_global)
+
+a_function()
+print("In main namespace, _a_global =", _a_global)
+
+print("\n--- Example 7: Nested functions and global keyword (version 2) ---")
+_a_global = 10
+def a_function():
+    def _a_function2():
+        global _a_global
+        _a_global = 20
+    print("Before calling _a_function2, _a_global =", _a_global)
+    _a_function2()
+    print("After calling _a_function2, _a_global =", _a_global)
+
+a_function()
+print("In main namespace, _a_global =", _a_global)
+
+print("\n--- End of scope.py demonstration ---")
+
+**********
+
+Output (first 500 chars):
+
+**********
+
+--- Example 1: Variables outside and inside a loop ---
+9
+10
+
+--- Example 2: Variables inside a function ---
+1
+0
+Updated x after reassignment: 10
+
+--- Example 3: Global and local variable contrast ---
+Before calling a_function, outside the function, _a_global = 10
+Before calling a_function, outside the function, _b_global = 15
+Inside function, _a_global = 4
+Inside function, _b_global = 9
+Inside function, _a_local = 3
+After calling a_function, outside, _a_global (still) = 10
+After calling a_funct
+**********
+No errors.
+======================================================================
+Script: basic_io1.py
+
+Contents:
+
+**********
+#############################
+# FILE INPUT
+#############################
+# Open a file for reading
+
+"""
+Read data from a text file and print its contents twice, the second time skipping blank lines.
+"""
+
+f = open('../data/test.txt', 'r')
+# use "implicit" for loop:
+# if the object is a file, python will cycle over lines
+for line in f:
+    print(line)
+
+# close the file
+f.close()
+
+# Same example, skip blank lines
+f = open('../data/test.txt', 'r')
+for line in f:
+    if len(line.strip()) > 0:
+        print(line)
+
+f.close()
+**********
+
+Output (first 500 chars):
+
+**********
+
+**********
+Errors:
+**********
+Traceback (most recent call last):
+  File "/home/mhasoba/Documents/Teaching/IC_CMEE/2025-26/Coursework/StudentRepos/QianwenLiu_qql25/week2/code/basic_io1.py", line 10, in <module>
+    f = open('../data/test.txt', 'r')
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '../data/test.txt'
+
+**********
+======================================================================
+Script: debug_me.py
+
+Contents:
+
+**********
+
+"""
+Debug sample code to identify and fix errors.
+"""
+
+def buggyfunc(x):
+    y = x
+    for i in range(x):
+        y = y-1
+        if y == 1:
+            break
+    z = x/y
+    return z
+
+print(buggyfunc(20))
+**********
+
+Output (first 500 chars):
+
+**********
+20.0
+
+**********
+No errors.
+======================================================================
+Script: cfexercises1.py
+
+Contents:
+
+**********
+#!/usr/bin/env python3
+
+"""
+Functions exemplifying the use of control statements, loops, and user input.
+Test the functions with predefined values and user-provided arguments.
+"""
+
+__author__ = 'Betty Liu (qql25@ic.ac.uk)'
+__version__ = '0.0.1'
+
+import sys
+
+def foo_1(x):
+    return x ** 0.5
+
+def foo_2(x, y):
+    if x > y:
+        return x
+    return y
+
+def foo_3(x, y, z):
+    if x > y:
+        x, y = y, x
+    if x > z:
+        x, z = z, x
+    if y > z:
+        y, z = z, y
+    return [x, y, z]
+
+def foo_4(x):
+    result = 1
+    for i in range(1, x + 1):
+        result = result * i
+    return result
+
+# fix by adding base case and handling negative input
+def foo_5(x): # a recursive function that calculates the factorial of x
+    if x == 1 or x == 0:
+        return 1
+    elif x < 0:
+        return "Please enter a valid positive integer."
+    return x * foo_5(x - 1)
+     
+def foo_6(x): # Calculate the factorial of x in a different way; no if statement involved
+    if x < 0:
+        return "Please enter a valid positive integer."
+    facto = 1
+    while x >= 1:
+        facto = facto * x
+        x = x - 1
+    return facto
+
+def main(argv):
+    # Test the functions
+    print(foo_1(30))
+    print(foo_2(5, 7))
+    print(foo_3(9, 2, 5))
+    print(foo_4(25))
+    print(foo_5(35))
+    print(foo_5(-5))
+    print(foo_5(0))
+    print(foo_6(25))
+    print(foo_6(-10))
+    print(foo_6(0))
+
+    # Get arguments from user
+    print("Number of arguments:", len(sys.argv))
+    # Print all arguments except the script name
+    print("The arguments are:", sys.argv[1:])
+
+    # Test if user give one valid input
+    if len(sys.argv) == 4:
+        # Check if all arguments are digits
+        if all(arg.isdigit() for arg in sys.argv[1:]):
+            # test all the foo_x functions with the user input
+            print("Testing foo_x functions with user input:")
+            input_x = int(sys.argv[1])
+            input_y = int(sys.argv[2])
+            input_z = int(sys.argv[3])
+            print(foo_1(input_x))
+            print(foo_2(input_x, input_y))
+            print(foo_3(input_x, input_y, input_z))
+            print(foo_4(input_x))
+            print(foo_5(input_x))
+            print(foo_6(input_x))
+        else:
+            print("Please enter a valid positive integer.")
+    else:
+        print("Please enter exactly 3 arguments.")
+
+if (__name__ == "__main__"):
+    status = main(sys.argv)
+    sys.exit(status)
+**********
+
+Output (first 500 chars):
+
+**********
+5.477225575051661
+7
+[2, 5, 9]
+15511210043330985984000000
+10333147966386144929666651337523200000000
+Please enter a valid positive integer.
+1
+15511210043330985984000000
+Please enter a valid positive integer.
+1
+Number of arguments: 1
+The arguments are: []
+Please enter exactly 3 arguments.
+
+**********
+No errors.
+======================================================================
+Script: boilerplate.py
+
+Contents:
+
+**********
+# !/usr/bin/env python3
+
+"""
+Format of a python program
+"""
+
+__appname__ = '[application name here]'
+__author__ = 'Your Name (your@email.address)'
+__version__ = '0.0.1'
+__license__ = "License for this code/program"
+
+## imports ##
+import sys # module to interface our program with the operating system
+
+## constants ##
+
+
+## functions ##
+def main(argv):
+    """ Main entry point of the program """
+    print('This is a boilerplate') # NOTE: indented using two tabs or 4 spaces
+    return 0
+
+if __name__ == "__main__": 
+    """Makes sure the "main" function is called from command line"""  
+    status = main(sys.argv)
+    sys.exit(status)
+**********
+
+Output (first 500 chars):
+
+**********
+This is a boilerplate
+
+**********
+No errors.
+======================================================================
+Script: basic_io2.py
+
+Contents:
+
+**********
+#############################
+# FILE OUTPUT
+#############################
+# Save the elements of a list to a file
+
+"""
+Save the numbers from 0 to 99 to a text file, each on a new line
+"""
+
+list_to_save = range(100)
+
+f = open('../data/testout.txt','w')
+for i in list_to_save:
+    f.write(str(i) + '\n') ## Add a new line at the end
+
+f.close()
+**********
+
+Output (first 500 chars):
+
+**********
+
+**********
+No errors.
+======================================================================
+Script: control_flow.py
+
+Contents:
+
+**********
+# !/usr/bin/env python3
+
+"""Some functions exemplifying the use of control statements"""
+# docstrings are considered part of the running code (normal comments are
+# stripped). Hence, you can access your docstrings at run time.
+__author__ = 'Samraat Pawar (s.pawar@imperial.ac.uk)'
+__version__ = '0.0.1'
+
+import sys
+
+def even_or_odd(x=0): # if not specified, x should take value 0.
+
+    """Find whether a number x is even or odd."""
+    if x % 2 == 0: #The conditional if
+        return f"{x} is Even!"
+    return f"{x} is Odd!"
+
+def largest_divisor_five(x=120):
+    """Find which is the largest divisor of x among 2,3,4,5."""
+    largest = 0
+    if x % 5 == 0:
+        largest = 5
+    elif x % 4 == 0: #means "else, if"
+        largest = 4
+    elif x % 3 == 0:
+        largest = 3
+    elif x % 2 == 0:
+        largest = 2
+    else: # When all other (if, elif) conditions are not met
+        return f"No divisor found for {x}!" # Each function can return a value or a variable.
+    return f"The largest divisor of {x} is {largest}"
+
+def is_prime(x=70):
+    """Find whether an integer is prime."""
+    for i in range(2, x): #  "range" returns a sequence of integers
+        if x % i == 0:
+            print(f"{x} is not a prime: {i} is a divisor") 
+            return False
+    print(f"{x} is a prime!")
+    return True 
+
+def find_all_primes(x=22):
+    """Find all the primes up to x"""
+    allprimes = []
+    for i in range(2, x + 1):
+        if is_prime(i):
+            allprimes.append(i)
+    print(f"There are {len(allprimes)} primes between 2 and {x}")
+    return allprimes
+      
+def main(argv):
+    
+    print(even_or_odd(22))
+    print(even_or_odd(33))
+    print(largest_divisor_five(120))
+    print(largest_divisor_five(121))
+    print(is_prime(60))
+    print(is_prime(59))
+    print(find_all_primes(100))
+    return 0
+
+if (__name__ == "__main__"):
+    status = main(sys.argv)
+    sys.exit(status)
+**********
+
+Output (first 500 chars):
+
+**********
+22 is Even!
+33 is Odd!
+The largest divisor of 120 is 5
+No divisor found for 121!
+60 is not a prime: 2 is a divisor
+False
+59 is a prime!
+True
+2 is a prime!
+3 is a prime!
+4 is not a prime: 2 is a divisor
+5 is a prime!
+6 is not a prime: 2 is a divisor
+7 is a prime!
+8 is not a prime: 2 is a divisor
+9 is not a prime: 3 is a divisor
+10 is not a prime: 2 is a divisor
+11 is a prime!
+12 is not a prime: 2 is a divisor
+13 is a prime!
+14 is not a prime: 2 is a divisor
+15 is not a prime: 3 is a divisor
+16 is
+**********
+No errors.
+======================================================================
+Script: lc1.py
+
+Contents:
+
+**********
+
+"""
+This code demonstrates the use of tuples and list comprehensions.
+"""
+
+birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
+          ('Delichon urbica','House martin',19),
+          ('Junco phaeonotus','Yellow-eyed junco',19.5),
+          ('Junco hyemalis','Dark-eyed junco',19.6),
+          ('Tachycineata bicolor','Tree swallow',20.2),
+         )
+
+#(1) Write three separate list comprehensions that create three different
+# lists containing the latin names, common names and mean body masses for
+# each species in birds, respectively. 
+
+# Using list comprehensions to traverse the tuples in birds
+names = [bird[0] for bird in birds]
+common_names = [bird[1] for bird in birds]
+masses = [bird[2] for bird in birds]
+
+print("Latin names:", names, "\nCommon names:", common_names, "\nMean body masses:", masses)
+
+# (2) Now do the same using conventional loops (you can choose to do this 
+# before 1 !). 
+
+# A nice example out out is:
+# Step #1:
+# Latin names:
+# ['Passerculus sandwichensis', 'Delichon urbica', 'Junco phaeonotus', 'Junco hyemalis', 'Tachycineata bicolor']
+# ... etc.
+
+conventional_names = []
+conventional_common_names = []
+conventional_masses = []
+
+for bird in birds:
+    conventional_names.append(bird[0])
+    conventional_common_names.append(bird[1])
+    conventional_masses.append(bird[2])
+
+print("\nFor conventional way:\nLatin names:", conventional_names, "\nCommon names:", conventional_common_names, "\nMean body masses:", conventional_masses)
+ 
+**********
+
+Output (first 500 chars):
+
+**********
+Latin names: ['Passerculus sandwichensis', 'Delichon urbica', 'Junco phaeonotus', 'Junco hyemalis', 'Tachycineata bicolor'] 
+Common names: ['Savannah sparrow', 'House martin', 'Yellow-eyed junco', 'Dark-eyed junco', 'Tree swallow'] 
+Mean body masses: [18.7, 19, 19.5, 19.6, 20.2]
+
+For conventional way:
+Latin names: ['Passerculus sandwichensis', 'Delichon urbica', 'Junco phaeonotus', 'Junco hyemalis', 'Tachycineata bicolor'] 
+Common names: ['Savannah sparrow', 'House martin', 'Yellow-eyed junco', 
+**********
+No errors.
+======================================================================
+Script: sysargv.py
+
+Contents:
+
+**********
+# !/usr/bin/env python3
+
+"""
+This file using sys package, output number of arguments user pass through. Name of script and print all the arguments.
+"""
+
+import sys
+print("This is the name of the script: ", sys.argv[0])
+print("Number of arguments: ", len(sys.argv))
+print("The arguments are: " , str(sys.argv))
+**********
+
+Output (first 500 chars):
+
+**********
+This is the name of the script:  sysargv.py
+Number of arguments:  1
+The arguments are:  ['sysargv.py']
+
+**********
+No errors.
+======================================================================
+Script: oaks_debugme.py
+
+Contents:
+
+**********
+import csv
+import sys
+
+#Define function
+#Miswrite quercus to quercs so nothing found
+def is_an_oak(name):
+    """ 
+    Returns True if name is starts with 'quercus' 
+    >>> is_an_oak('Quercus robur')
+    True
+    
+    >>> is_an_oak('Fagus sylvatica')
+    False
+
+    >>> is_an_oak('Quercuss robur')
+    True
+
+    >>> is_an_oak('sQuercuss robur')
+    True
+    """
+
+    genus = name.split()[0]
+    genus_set = set(genus.lower())
+    target_set = set('quercus')
+
+    # Find the number of characters in common
+    intersection_size = len(genus_set.intersection(target_set))
+
+    if intersection_size >= 5 and 4 <= len(genus) <= 9:
+        return True
+
+    return False
+
+def main(argv): 
+    f = open('../data/TestOaksData.csv','r')
+    g = open('../data/JustOaksData.csv','w')
+    taxa = csv.reader(f)
+    csvwrite = csv.writer(g)
+    oaks = set()
+    for row in taxa:
+        print(row)
+        print ("The genus is: ") 
+        print(row[0] + '\n')
+        if is_an_oak(row[0]):
+            print('FOUND AN OAK!\n')
+            csvwrite.writerow([row[0], row[1]])    
+
+    return 0
+    
+if (__name__ == "__main__"):
+    status = main(sys.argv)
+**********
+
+Output (first 500 chars):
+
+**********
+['Genus', ' species']
+The genus is: 
+Genus
+
+['Quercus', ' robur']
+The genus is: 
+Quercus
+
+FOUND AN OAK!
+
+['Fraxinus', ' excelsior']
+The genus is: 
+Fraxinus
+
+['Pinus', ' sylvestris']
+The genus is: 
+Pinus
+
+['Quercus', ' cerris']
+The genus is: 
+Quercus
+
+FOUND AN OAK!
+
+['Quercus', ' petraea']
+The genus is: 
+Quercus
+
+FOUND AN OAK!
+
+
+**********
+No errors.
+======================================================================
+Script: tuple.py
+
+Contents:
+
+**********
+"""
+This script loops through a collection of data for several birds. For each bird, it pulls out its specific Latin name, common name, and mass. Finally, it prints these details.
+"""
+
+birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
+          ('Delichon urbica','House martin',19),
+          ('Junco phaeonotus','Yellow-eyed junco',19.5),
+          ('Junco hyemalis','Dark-eyed junco',19.6),
+          ('Tachycineata bicolor','Tree swallow',20.2),
+        )
+
+# Birds is a tuple of tuples of length three: latin name, common name, mass.
+# write a (short) script to print these on a separate line or output block by
+# species 
+# 
+# A nice example output is:
+# 
+# Latin name: Passerculus sandwichensis Common name: Savannah sparrow Mass: 18.7
+# ... etc.
+
+for bird in birds:
+    print("\nLatin name:", bird[0], "Common name:", bird[1], "Mass:", bird[2])
+**********
+
+Output (first 500 chars):
+
+**********
+
+Latin name: Passerculus sandwichensis Common name: Savannah sparrow Mass: 18.7
+
+Latin name: Delichon urbica Common name: House martin Mass: 19
+
+Latin name: Junco phaeonotus Common name: Yellow-eyed junco Mass: 19.5
+
+Latin name: Junco hyemalis Common name: Dark-eyed junco Mass: 19.6
+
+Latin name: Tachycineata bicolor Common name: Tree swallow Mass: 20.2
+
+**********
+No errors.
+======================================================================
+Script: test_control_flow.py
+
+Contents:
+
+**********
+# !/usr/bin/env python3
+
+"""Some functions exemplifying the use of control statements"""
+
+__author__ = 'Your Name (Your.Name@your.email.address)'
+__version__ = '0.0.1'
+
+import sys
+import doctest # Import the doctest module
+
+def even_or_odd(x=0):
+    """Find whether a number x is even or odd.
+      
+    >>> even_or_odd(10)
+    '10 is Even!'
+    
+    >>> even_or_odd(5)
+    '5 is Odd!'
+        
+    in case of negative numbers, the positive is taken:    
+    >>> even_or_odd(-2)
+    '-2 is Even!'
+    
+    """
+    #Define function to be tested
+    if x % 2 == 0:
+        return f"{x} is Even!"
+    return f"{x} is Odd!"
+
+def main(argv): 
+    print(even_or_odd(22))
+    print(even_or_odd(33))
+    return 0
+
+if (__name__ == "__main__"):
+    status = main(sys.argv)
+
+doctest.testmod()   # To run with embedded tests
+**********
+
+Output (first 500 chars):
+
+**********
+22 is Even!
+33 is Odd!
+
+**********
+No errors.
+======================================================================
+Script: loops.py
+
+Contents:
+
+**********
+"""
+These code snippets demonstrate two fundamental types of loops in Python: the for loop and the while loop.
+"""
+
+# FOR loops
+# Iterate over a range of numbers
+for i in range(5):
+    print(i)
+
+# Iterate over a list
+my_list = [0, 2, "geronimo!", 3.0, True, False]
+for k in my_list:
+    print(k)
+
+# Summing elements in a list
+total = 0
+summands = [0, 1, 11, 111, 1111]
+for s in summands:
+    total = total + s
+    print(total)
+
+# WHILE loop
+z = 0
+# Increment z until it reaches 100
+while z < 100:
+    z = z + 1
+    print(z)
+**********
+
+Output (first 500 chars):
+
+**********
+0
+1
+2
+3
+4
+0
+2
+geronimo!
+3.0
+True
+False
+0
+1
+12
+123
+1234
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+
+**********
+No errors.
+======================================================================
+Script: basic_csv.py
+
+Contents:
+
+**********
+import csv
+
+"""
+Read a CSV file and extract specific information. Then write selected data to a new CSV file.
+"""
+
+# Read a file containing:
+# 'Species','Infraorder','Family','Distribution','Body mass male (Kg)'
+with open('../data/testcsv.csv','r') as f:
+
+    csvread = csv.reader(f)
+    temp = []
+    for row in csvread:
+        temp.append(tuple(row))
+        print(row)
+        print("The species is", row[0])
+
+# write a file containing only species name and Body mass
+with open('../data/testcsv.csv','r') as f:
+    with open('../data/bodymass.csv','w') as g:
+
+        csvread = csv.reader(f)
+        csvwrite = csv.writer(g)
+        for row in csvread:
+            print(row)
+            csvwrite.writerow([row[0], row[4]])
+**********
+
+Output (first 500 chars):
+
+**********
+['Species', 'Infraorder', 'Family', 'Distribution', 'Body mass male (Kg)']
+The species is Species
+['Daubentonia_madagascariensis', 'Chiromyiformes ', 'Daubentoniidae', 'Madagascar', '2.7']
+The species is Daubentonia_madagascariensis
+['Allocebus_trichotis', 'Lemuriformes', 'Cheirogaleidae', 'Madagascar', '0.1']
+The species is Allocebus_trichotis
+['Avahi_laniger', 'Lemuriformes', 'Indridae', 'America', '1.03']
+The species is Avahi_laniger
+['Avahi_occidentalis', 'Lemuriformes', 'Indridae', 'Madagas
+**********
+No errors.
+======================================================================
+Script: align_seqs.py
+
+Contents:
+
+**********
+# Two example sequences to match
+# seq2 = "ATCGCCGGATTACGGG"
+# seq1 = "CAATTCGGAT"
+import csv
+
+# Assign the longer sequence s1, and the shorter to s2
+# l1 is length of the longest, l2 that of the shortest
+
+"""
+Read two sequences from a CSV file and align them to find the best match.
+It will output the best alignment and its score.
+"""
+
+with open('../data/align_DNA_input.csv', 'r') as file:
+    csv_reader = csv.reader(file)
+    row = next(csv_reader)  # read the first row
+    seq1 = row[0]  
+    seq2 = row[1]  
+
+l1 = len(seq1)
+l2 = len(seq2)
+if l1 >= l2:
+    s1 = seq1
+    s2 = seq2
+else:
+    s1 = seq2
+    s2 = seq1
+    l1, l2 = l2, l1 # swap the two lengths
+
+# A function that computes a score by returning the number of matches starting
+# from arbitrary startpoint (chosen by user)
+def calculate_score(s1, s2, l1, l2, startpoint):
+    matched = "" # to hold string displaying alignements
+    score = 0   # to hold the score
+    
+    # compare the two sequences by go through the second sequence
+    for i in range(l2):
+        if (i + startpoint) < l1:
+            # Only want to compare characters within the range of s1
+            if s1[i + startpoint] == s2[i]: # if the bases match
+                matched = matched + "*"
+                score = score + 1
+            else:
+                matched = matched + "-"
+
+    # some formatted output
+    #The alignment string uses '*' to indicate matches and '-' for mismatches.
+    print("." * startpoint + matched)           
+    print("." * startpoint + s2)
+    print(s1)
+    print(score) 
+    print(" ")
+
+    return score, matched
+
+# Test the function with some example starting points:
+# calculate_score(s1, s2, l1, l2, 0)
+# calculate_score(s1, s2, l1, l2, 1)
+# calculate_score(s1, s2, l1, l2, 5)
+
+# now try to find the best match (highest score) for the two sequences
+my_best_align = None
+my_best_score = -1
+
+for i in range(l1): # Note that you just take the last alignment with the highest score
+    z, alignment_display = calculate_score(s1, s2, l1, l2, i)
+    if z > my_best_score:
+        my_best_align = "." * i + s2 # Update best alignment with shifted dots
+        best_alignment_display = alignment_display
+        my_best_score = z
+
+# write result to file
+with open('../results/best_alignment.txt', 'w') as output_file:
+    output_file.write(best_alignment_display + '\n')
+    output_file.write(my_best_align + '\n')
+    output_file.write(s1 + '\n')
+    output_file.write("Best score: " + str(my_best_score) + '\n')
+
+**********
+
+Output (first 500 chars):
+
+**********
+-----*****
+CAATTCGGAT
+ATCGCCGGATTACGGG
+5
+ 
+.------*--*
+.CAATTCGGAT
+ATCGCCGGATTACGGG
+2
+ 
+..*---------
+..CAATTCGGAT
+ATCGCCGGATTACGGG
+1
+ 
+...--------*-
+...CAATTCGGAT
+ATCGCCGGATTACGGG
+1
+ 
+....*---------
+....CAATTCGGAT
+ATCGCCGGATTACGGG
+1
+ 
+.....*---*-----
+.....CAATTCGGAT
+ATCGCCGGATTACGGG
+2
+ 
+......--***--*--
+......CAATTCGGAT
+ATCGCCGGATTACGGG
+4
+ 
+.......-*-*-***-
+.......CAATTCGGAT
+ATCGCCGGATTACGGG
+5
+ 
+........------**
+........CAATTCGGAT
+ATCGCCGGATTACGGG
+2
+ 
+.........--*---*
+.........CAATTCGGAT
+ATCGCCG
+**********
+No errors.
+======================================================================
+Script: Vectorize2.R
+
+Contents:
+
+**********
+# Runs the stochastic Ricker equation with gaussian fluctuations
+
+rm(list = ls())
+
+stochrick <- function(p0 = runif(1000, .5, 1.5), r = 1.2, K = 1, sigma = 0.2,numyears = 100){
+  
+  N <- matrix(NA, numyears, length(p0))  #initialize empty matrix
+  
+  N[1, ] <- p0
+  
+  for (pop in 1:length(p0)) { #loop through the populations
+    
+    for (yr in 2:numyears){ #for each pop, loop through the years
+      
+      N[yr, pop] <- N[yr-1, pop] * exp(r * (1 - N[yr - 1, pop] / K) + rnorm(1, 0, sigma)) # add one fluctuation from normal distribution
+      
+    }
+    
+  }
+  return(N)
+  
+}
+
+stochrickvect <- function(p0 = runif(1000, .5, 1.5), r = 1.2, K = 1, sigma = 0.2,numyears = 100){
+  
+  N <- matrix(NA, numyears, length(p0))  #initialize empty matrix row is years col is num of polpulation
+  
+  N[1, ] <- p0
+      
+  for (yr in 2:numyears){ #for each pop, loop through the years
+  # Vectorized operation across all populations
+    N[yr, ] <- N[yr-1, ] * exp(r * (1 - N[yr - 1, ] / K) + rnorm(length(p0), 0, sigma))
+  }
+
+  return(N)
+  
+}
+
+# Now write another function called stochrickvect that vectorizes the above to
+# the extent possible, with improved performance: 
+
+print("Vectorized Stochastic Ricker takes:")
+print(system.time(res2<-stochrickvect()))
+**********
+
+Output (first 500 chars):
+
+**********
+[1] "Vectorized Stochastic Ricker takes:"
+   user  system elapsed 
+  0.017   0.004   0.020 
+
+**********
+No errors.
+======================================================================
+Script: break.R
+
+Contents:
+
+**********
+i <- 0 #Initialize i
+while (i < Inf) {
+  if (i == 10) {
+    break 
+  } else { # Break out of the while loop!  
+    cat("i equals " , i , " \n")
+    i <- i + 1 # Update i
+  }
+}
+
+for (i in 1:10) {
+  if ((i %% 2) == 0) # check if the number is odd
+    next # pass to next iteration of loop 
+  print(i)
+}
+**********
+
+Output (first 500 chars):
+
+**********
+i equals  0  
+i equals  1  
+i equals  2  
+i equals  3  
+i equals  4  
+i equals  5  
+i equals  6  
+i equals  7  
+i equals  8  
+i equals  9  
+[1] 1
+[1] 3
+[1] 5
+[1] 7
+[1] 9
+
+**********
+No errors.
+======================================================================
+Script: sample.R
+
+Contents:
+
+**********
+######### Functions ##########
+
+## A function to take a sample of size n from a population "popn" and return its mean
+myexperiment <- function(popn,n) {
+  pop_sample <- sample(popn, n, replace = FALSE)
+  return(mean(pop_sample))
+}
+
+## Calculate means using a FOR loop on a vector without preallocation:
+## This is the slowest method 
+loopy_sample1 <- function(popn, n, num) {
+  result1 <- vector() #Initialize empty vector of size 1 
+  for(i in 1:num) {
+    result1 <- c(result1, myexperiment(popn, n))
+  }
+  return(result1)
+}
+
+## To run "num" iterations of the experiment using a FOR loop on a vector with preallocation:
+# This is faster than without preallocation
+loopy_sample2 <- function(popn, n, num) {
+  result2 <- vector(,num) #Preallocate expected size
+  for(i in 1:num) {
+    result2[i] <- myexperiment(popn, n)
+  }
+  return(result2)
+}
+
+## To run "num" iterations of the experiment using a FOR loop on a list with preallocation:
+# We use lists here
+loopy_sample3 <- function(popn, n, num) {
+  result3 <- vector("list", num) #Preallocate expected size
+  for(i in 1:num) {
+    result3[[i]] <- myexperiment(popn, n)
+  }
+  return(result3)
+}
+
+
+## To run "num" iterations of the experiment using vectorization with lapply:
+# The result is a list
+lapply_sample <- function(popn, n, num) {
+  result4 <- lapply(1:num, function(i) myexperiment(popn, n))
+  return(result4)
+}
+
+## To run "num" iterations of the experiment using vectorization with sapply:
+# The result is a vector because sapply simplifies the list to a vector
+sapply_sample <- function(popn, n, num) {
+  result5 <- sapply(1:num, function(i) myexperiment(popn, n))
+  return(result5)
+}
+
+n <- 100 # sample size for each experiment
+num <- 10000 # Number of times to rerun the experiment
+
+set.seed(54321)
+popn <- rnorm(10000) # Generate the population
+#hist(popn)
+
+print("Using loops without preallocation on a vector took:" )
+print(system.time(loopy_sample1(popn, n, num)))
+
+print("Using loops with preallocation on a vector took:" )
+print(system.time(loopy_sample2(popn, n, num)))
+
+print("Using loops with preallocation on a list took:" )
+print(system.time(loopy_sample3(popn, n, num)))
+
+print("Using the vectorized sapply function (on a list) took:" )
+print(system.time(sapply_sample(popn, n, num)))
+
+print("Using the vectorized lapply function (on a list) took:" )
+print(system.time(lapply_sample(popn, n, num)))
+**********
+
+Output (first 500 chars):
+
+**********
+[1] "Using loops without preallocation on a vector took:"
+   user  system elapsed 
+  0.190   0.017   0.207 
+[1] "Using loops with preallocation on a vector took:"
+   user  system elapsed 
+  0.131   0.000   0.131 
+[1] "Using loops with preallocation on a list took:"
+   user  system elapsed 
+  0.135   0.000   0.135 
+[1] "Using the vectorized sapply function (on a list) took:"
+   user  system elapsed 
+  0.144   0.000   0.144 
+[1] "Using the vectorized lapply function (on a list) took:"
+   user  sys
+**********
+No errors.
+======================================================================
+Script: Vectorize1.R
+
+Contents:
+
+**********
+M <- matrix(runif(1000000),1000,1000) #
+
+SumAllElements <- function(M) {
+  Dimensions <- dim(M)  # vector [1000, 1000]
+  Tot <- 0
+  for (i in 1:Dimensions[1]) {
+    for (j in 1:Dimensions[2]) {
+      Tot <- Tot + M[i,j]
+    }
+  }
+  return (Tot)
+}
+
+print("Using loops, the time taken is:")
+print(system.time(SumAllElements(M)))
+
+print("Using the in-built vectorized function, the time taken is:")
+print(system.time(sum(M)))
+**********
+
+Output (first 500 chars):
+
+**********
+[1] "Using loops, the time taken is:"
+   user  system elapsed 
+  0.038   0.002   0.040 
+[1] "Using the in-built vectorized function, the time taken is:"
+   user  system elapsed 
+  0.000   0.000   0.001 
+
+**********
+No errors.
+======================================================================
+Script: R_conditionals.R
+
+Contents:
+
+**********
+# Checks if an integer is even
+is.even <- function(n = 2) {
+  if (n %% 2 == 0) {
+    return(paste(n,'is even!'))
+  } else {
+    return(paste(n,'is odd!'))
+  }
+}
+
+is.even(6)
+
+# Checks if a number is a power of 2
+is.power2 <- function(n = 2) {
+  if (log2(n) %% 1==0) {
+    return(paste(n, 'is a power of 2!'))
+  } else {
+    return(paste(n,'is not a power of 2!'))
+  }
+}
+
+is.power2(4)
+
+# Checks if a number is prime
+is.prime <- function(n) {
+  if (n==0) {
+    return(paste(n,'is a zero!'))
+  } else if (n==1) {
+    return(paste(n,'is just a unit!'))
+  }
+  
+  ints <- 2:(n-1)
+  
+  if (all(n%%ints!=0)) {
+    return(paste(n,'is a prime!'))
+  } else {
+    return(paste(n,'is a composite!'))
+  }
+}
+
+is.prime(3)
+
+**********
+
+Output (first 500 chars):
+
+**********
+[1] "6 is even!"
+[1] "4 is a power of 2!"
+[1] "3 is a prime!"
+
+**********
+No errors.
+======================================================================
+Script: apply1.R
+
+Contents:
+
+**********
+## Build a random matrix
+M <- matrix(rnorm(100), 10, 10)
+
+## Take the mean of each row
+RowMeans <- apply(M, 1, mean)
+print (RowMeans)
+
+## Now the variance
+RowVars <- apply(M, 1, var)
+print (RowVars)
+
+## By column
+ColMeans <- apply(M, 2, mean)
+print (ColMeans)
+
+**********
+
+Output (first 500 chars):
+
+**********
+ [1]  0.11228834  0.13571604  0.09323959  0.34552728  0.54503185 -0.05356600
+ [7]  0.33862747  0.29032221 -0.24118534  0.27045615
+ [1] 2.4711127 0.8385314 1.2169358 0.5690079 0.8449546 0.7239731 1.1050437
+ [8] 0.8667275 0.4110541 0.6929189
+ [1]  0.5036035  0.4254748 -0.1587874  0.3064855  0.3442645  0.5288899
+ [7] -0.3265991 -0.3897803  0.3465409  0.2563652
+
+**********
+No errors.
+======================================================================
+Script: basic_io.R
+
+Contents:
+
+**********
+# A simple R script to illustrate R input-output.   
+# Run line by line and check inputs outputs to understand what is happening  
+
+MyData <- read.csv("../data/trees.csv", header = TRUE) # import with headers
+
+write.csv(MyData, "../results/MyData.csv") #write it out as a new file
+
+write.table(MyData[1,], file = "../results/MyData.csv",append = TRUE) # Append to it  
+
+write.csv(MyData, "../results/MyData.csv", row.names = TRUE) # write row names
+
+write.table(MyData, "../results/MyData.csv", col.names = FALSE) # ignore column names
+
+**********
+
+Output (first 500 chars):
+
+**********
+
+**********
+Errors:
+**********
+Error in file(file, ifelse(append, "a", "w")) : 
+  cannot open the connection
+Calls: write.csv -> eval.parent -> eval -> eval -> <Anonymous> -> file
+In addition: Warning message:
+In file(file, ifelse(append, "a", "w")) :
+  cannot open file '../results/MyData.csv': No such file or directory
+Execution halted
+
+**********
+======================================================================
+Script: boilerplate.R
+
+Contents:
+
+**********
+# A boilerplate R script
+
+MyFunction <- function(Arg1, Arg2) {
+  
+  # Statements involving Arg1, Arg2:
+  print(paste("Argument", as.character(Arg1), "is a", class(Arg1))) # print Arg1's type
+  print(paste("Argument", as.character(Arg2), "is a", class(Arg2))) # print Arg2's type
+  
+  return (c(Arg1, Arg2)) #this is optional, but very useful
+}
+
+MyFunction(1,2) #test the function
+MyFunction("Riki","Tiki") #A different test
+
+**********
+
+Output (first 500 chars):
+
+**********
+[1] "Argument 1 is a numeric"
+[1] "Argument 2 is a numeric"
+[1] 1 2
+[1] "Argument Riki is a character"
+[1] "Argument Tiki is a character"
+[1] "Riki" "Tiki"
+
+**********
+No errors.
+======================================================================
+Script: apply2.R
+
+Contents:
+
+**********
+
+SomeOperation <- function(v) { # (What does this function do?)
+# Get the sum of the elements in v
+  if (sum(v) > 0) { #note that sum(v) is a single (scalar) value
+    # If the sum is positive, multiply each element by 100
+    return (v * 100)
+  } else { 
+    # Otherwise, just return the original vector
+    return (v)
+  }
+}
+
+M <- matrix(rnorm(100), 10, 10) # Create a 10x10 matrix of random numbers
+print (apply(M, 1, SomeOperation))# Apply over rows of M
+**********
+
+Output (first 500 chars):
+
+**********
+             [,1]       [,2]       [,3]       [,4]        [,5]        [,6]
+ [1,] -0.09807079   79.98103 -16.793797   91.60320 -0.96982007   -2.554027
+ [2,] -1.10027023   54.94485  38.056936   92.99607 -1.65341815   22.954522
+ [3,] -0.88605677  147.42259 -72.731212  152.85645  0.37131628   49.920286
+ [4,]  0.91631945   82.17090  -7.999203  -58.34615 -0.03816217  115.797707
+ [5,] -1.57276848 -183.56310 189.881054   56.31524 -0.03789805  264.885883
+ [6,] -0.84042601   32.58579   5.984710   67.30877
+**********
+No errors.
+======================================================================
+Script: control_flow.R
+
+Contents:
+
+**********
+a <- TRUE
+if (a == TRUE) {
+  print ("a is TRUE")
+} else {
+  print ("a is FALSE")
+}
+
+z <- runif(1)
+if (z <= 0.5) {
+  print ("Less than a half")
+}
+
+for (i in 1:10) {
+  j <- i * i
+  print(paste(i, " squared is", j ))
+}
+
+for(species in c('Heliodoxa rubinoides', 
+                 'Boissonneaua jardini', 
+                 'Sula nebouxii')) {
+  print(paste('The species is', species))
+}
+
+v1 <- c("a","bc","def")
+for (i in v1) {
+  print(i)
+}
+
+i <- 0
+while (i < 10) {
+  i <- i+1
+  print(i^2)
+}
+**********
+
+Output (first 500 chars):
+
+**********
+[1] "a is TRUE"
+[1] "Less than a half"
+[1] "1  squared is 1"
+[1] "2  squared is 4"
+[1] "3  squared is 9"
+[1] "4  squared is 16"
+[1] "5  squared is 25"
+[1] "6  squared is 36"
+[1] "7  squared is 49"
+[1] "8  squared is 64"
+[1] "9  squared is 81"
+[1] "10  squared is 100"
+[1] "The species is Heliodoxa rubinoides"
+[1] "The species is Boissonneaua jardini"
+[1] "The species is Sula nebouxii"
+[1] "a"
+[1] "bc"
+[1] "def"
+[1] 1
+[1] 4
+[1] 9
+[1] 16
+[1] 25
+[1] 36
+[1] 49
+[1] 64
+[1] 81
+[1] 100
+
+**********
+No errors.
+======================================================================
+Script: Ricker.R
+
+Contents:
+
+**********
+Ricker <- function(N0=1, r=1, K=10, generations=50)
+{
+  # Runs a simulation of the Ricker model
+  # Returns a vector of length generations
+  
+  N <- rep(NA, generations)    # Creates a vector of NA
+  
+  N[1] <- N0
+  for (t in 2:generations)
+  {
+    N[t] <- N[t-1] * exp(r*(1.0-(N[t-1]/K)))
+  }
+  return (N)
+}
+
+plot(Ricker(generations=10), type="l")
+**********
+
+Output (first 500 chars):
+
+**********
+
+**********
+No errors.
+======================================================================
+Script: TreeHeight.R
+
+Contents:
+
+**********
+# This function calculates heights of trees given distance of each tree 
+# from its base and angle to its top, using  the trigonometric formula 
+#
+# height = distance * tan(radians)
+#
+# ARGUMENTS
+# degrees:   The angle of elevation of tree
+# distance:  The distance from base of tree (e.g., meters)
+#
+# OUTPUT
+# The heights of the tree, same units as "distance"
+
+TreeHeight <- function(degrees, distance) {
+  radians <- degrees * pi / 180
+  height <- distance * tan(radians)
+  print(paste("Tree height is:", height))
+  
+  return (height)
+}
+
+TreeHeight(37, 40)
+
+TreeData <- read.csv("../data/trees.csv", header = TRUE) # import with headers
+
+TreeData$Tree.Height.m <- TreeHeight(TreeData$Angle.degrees, TreeData$Distance.m)
+
+cat("First few calculated heights:\n")
+print(TreeData$Tree.Height.m)
+cat("\n")
+
+write.csv(TreeData, file = "../results/TreeDataHeight.csv", row.names = FALSE)
+
+
+**********
+
+Output (first 500 chars):
+
+**********
+[1] "Tree height is: 30.1421620041118"
+[1] 30.14216
+  [1] "Tree height is: 27.8021161438536" "Tree height is: 45.2460250644405"
+  [3] "Tree height is: 14.6654828109493" "Tree height is: 14.9341751666304"
+  [5] "Tree height is: 35.9703591412599" "Tree height is: 32.4102133664874"
+  [7] "Tree height is: 17.4582436344144" "Tree height is: 30.1373803987097"
+  [9] "Tree height is: 20.3124778877177" "Tree height is: 24.4316633466933"
+ [11] "Tree height is: 27.5021323376702" "Tree height is: 25.1559006
+**********
+Errors:
+**********
+Error in file(file, ifelse(append, "a", "w")) : 
+  cannot open the connection
+Calls: write.csv -> eval.parent -> eval -> eval -> <Anonymous> -> file
+In addition: Warning message:
+In file(file, ifelse(append, "a", "w")) :
+  cannot open file '../results/TreeDataHeight.csv': No such file or directory
+Execution halted
+
+**********
+======================================================================
+Script: preallocate.R
+
+Contents:
+
+**********
+NoPreallocFun <- function(x) {
+    a <- vector() # empty vector
+    for (i in 1:x) {
+        a <- c(a, i) # concatenate
+        # print(a)
+        # print(object.size(a))
+    }
+}
+
+
+time_no_prealloc <- system.time(NoPreallocFun(1000))
+
+
+PreallocFun <- function(x) {
+    a <- rep(NA, x) # pre-allocated vector
+    for (i in 1:x) {
+        a[i] <- i # assign
+        # print(a)
+        # print(object.size(a))
+    }
+}
+
+time_prealloc <- system.time(PreallocFun(1000))
+
+
+cat("Without pre-allocation timing:\n")
+print(time_no_prealloc)
+
+cat("\nWith pre-allocation timing:\n")
+print(time_prealloc)
+
+**********
+
+Output (first 500 chars):
+
+**********
+Without pre-allocation timing:
+   user  system elapsed 
+  0.009   0.000   0.010 
+
+With pre-allocation timing:
+   user  system elapsed 
+  0.002   0.000   0.001 
+
+**********
+No errors.
+======================================================================
+Script: PP_Dists.R
+
+Contents:
+
+**********
+require(tidyverse) 
+
+MyDF <- read.csv("../data/EcolArchives-E089-51-D1.csv", stringsAsFactors = FALSE)
+
+# Turn the feeding interaction column into a factor easy to classify
+MyDF$Type.of.feeding.interaction <- as.factor(MyDF$Type.of.feeding.interaction)
+
+# Convert mg to g and adjust mass values
+MyDF$Prey.mass[MyDF$Prey.mass.unit == "mg"] <- MyDF$Prey.mass[MyDF$Prey.mass.unit == "mg"] / 1000
+MyDF$Prey.mass.unit[MyDF$Prey.mass.unit == "mg"] <- "g"
+
+# Get list of feeding interactions
+feeding_interactions <- levels(MyDF$Type.of.feeding.interaction)
+num_interactions <- length(feeding_interactions)
+
+pdf(file = "../results/Pred_Subplots.pdf", width = 12, height = 11)
+
+par(mfcol = c(ceiling(num_interactions / 2), 2))  # Set up plotting area
+
+# Create a separate plot for each feeding interaction
+for (i in 1:num_interactions) {
+  interaction <- feeding_interactions[i]
+  subset_df <- filter(MyDF, Type.of.feeding.interaction == interaction)
+
+
+  # Basic scatter plot with log10 axes
+    hist(log10(subset_df$Predator.mass),xlab="log10(Predator Mass (g))",ylab="Count", 
+    col = "lightblue", border = "#ab3044") # Change bar and borders colors 
+}
+
+graphics.off()
+
+pdf(file = "../results/Prey_Subplots.pdf", width = 12, height = 11)
+
+par(mfcol = c(ceiling(num_interactions / 2), 2))  # Set up plotting area
+
+# Create a separate plot for each feeding interaction
+for (i in 1:num_interactions) {
+  interaction <- feeding_interactions[i]
+  subset_df <- filter(MyDF, Type.of.feeding.interaction == interaction)
+
+
+  # Basic scatter plot with log10 axes
+    hist(log10(subset_df$Prey.mass),xlab="log10(Prey Mass (g))",ylab="Count", 
+    col = "lightblue", border = "#b8384d") # Change bar and borders colors 
+}
+
+graphics.off()
+
+pdf(file = "../results/SizeRatio_Subplots.pdf", width = 12, height = 11)
+
+par(mfcol = c(ceiling(num_interactions / 2), 2))  # Set up plotting area
+
+# Create a separate plot for each feeding interaction
+for (i in 1:num_interactions) {
+  interaction <- feeding_interactions[i]
+  subset_df <- filter(MyDF, Type.of.feeding.interaction == interaction)
+
+
+  # Basic scatter plot with log10 axes
+    hist(log10(subset_df$Prey.mass/subset_df$Predator.mass),xlab="log10(Prey Mass / Predator Mass)",ylab="Count", 
+    col = "lightblue", border = "#ac2e43") # Change bar and borders colors 
+}
+
+graphics.off()
+
+## create csv file with data from each interaction
+
+#initialize empty data frame to store results
+PP_results <- data.frame(
+  Feeding.type = feeding_interactions,
+  Mean.log.Predator.mass = NA_real_,
+  Median.log.Predator.mass = NA_real_,
+  Mean.log.Prey.mass = NA_real_,
+  Median.log.Prey.mass = NA_real_,
+  Mean.log.Size.ratio = NA_real_,
+  Median.log.Size.ratio = NA_real_,
+  stringsAsFactors = FALSE
+)
+
+
+# Calculate means and medians for each feeding interaction
+for (i in 1:num_interactions) {
+  interaction <- feeding_interactions[i]
+  subset_df <- filter(MyDF, Type.of.feeding.interaction == interaction)
+
+  PP_results$Mean.log.Predator.mass[i] <- mean(log10(subset_df$Predator.mass), na.rm = TRUE)
+  PP_results$Median.log.Predator.mass[i] <- median(log10(subset_df$Predator.mass), na.rm = TRUE)
+  PP_results$Mean.log.Prey.mass[i] <- mean(log10(subset_df$Prey.mass), na.rm = TRUE)
+  PP_results$Median.log.Prey.mass[i] <- median(log10(subset_df$Prey.mass), na.rm = TRUE)
+  PP_results$Mean.log.Size.ratio[i] <- mean(log10(subset_df$Prey.mass / subset_df$Predator.mass), na.rm = TRUE)
+  PP_results$Median.log.Size.ratio[i] <- median(log10(subset_df$Prey.mass / subset_df$Predator.mass), na.rm = TRUE)
+} 
+
+# create human friendly csv file header
+colnames(PP_results) <- c(
+  "Feeding type",
+  "Mean log10 Predator mass",
+  "Median log10 Predator mass",
+  "Mean log10 Prey mass",
+  "Median log10 Prey mass",
+  "Mean log10 Size ratio",
+  "Median log10 Size ratio"
+)
+
+# Prevent row names from being written to the csv
+write.csv(PP_results, file = "../results/PP_Results.csv", row.names = FALSE)
+**********
+
+Output (first 500 chars):
+
+**********
+
+**********
+Errors:
+**********
+Loading required package: tidyverse
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.4.4     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+**********
+======================================================================
+Script: hist.R
+
+Contents:
+
+**********
+MyDF <- read.csv("../data/EcolArchives-E089-51-D1.csv", stringsAsFactors = FALSE)
+
+# hist(log10(MyDF$Predator.mass), xlab = "log10(Predator Mass (g))", ylab = "Count") # include labels
+
+# hist(log10(MyDF$Prey.mass), xlab = "log10(Prey Mass (g))", ylab = "Count") # include labels
+
+# gather all data so we could find the overall min and max
+
+all_data <- c(log10(MyDF$Predator.mass), log10(MyDF$Prey.mass))
+
+min_val <- floor(min(all_data, na.rm = TRUE))
+max_val <- ceiling(max(all_data, na.rm = TRUE))
+
+# create breaks from min to max with interval of 0.5
+
+breaks_seq <- seq(from = min_val, to = max_val, by = 0.5)
+
+hist(log10(MyDF$Predator.mass), xlab = "log10(Predator Mass (g))", ylab = "Count", breaks = breaks_seq, xlim = c(min_val, max_val)) # include labels
+
+hist(log10(MyDF$Prey.mass), xlab = "log10(Prey Mass (g))", ylab = "Count", breaks = breaks_seq, xlim = c(min_val, max_val)) # include labels
+**********
+
+Output (first 500 chars):
+
+**********
+
+**********
+No errors.
+======================================================================
+Script: PP_Regress.R
+
+Contents:
+
+**********
+library(ggplot2)
+library(dplyr)
+library(scales) # use 10^x format on log axes
+
+MyDF <- read.csv("../data/EcolArchives-E089-51-D1.csv", stringsAsFactors = FALSE)
+
+# Turn the feeding interaction column into a factor easy to classify
+MyDF$Type.of.feeding.interaction <- as.factor(MyDF$Type.of.feeding.interaction)
+
+# Convert mg to g and adjust mass values
+MyDF$Prey.mass[MyDF$Prey.mass.unit == "mg"] <- MyDF$Prey.mass[MyDF$Prey.mass.unit == "mg"] / 1000
+MyDF$Prey.mass.unit[MyDF$Prey.mass.unit == "mg"] <- "g"
+
+p <- ggplot (
+    MyDF,
+    # use mass as axes and color by life stage
+    aes(x = Prey.mass, 
+        y = Predator.mass, 
+        color = Predator.lifestage)
+    ) +
+    # Add scatter points
+    geom_point(shape = 3, alpha = 0.7) +
+    # Add linear regression line with confidence interval
+    geom_smooth(method = "lm", se = TRUE, fullrange = TRUE) +
+    # Set log axes with scientific labels
+    scale_x_log10(
+        #force scientific labels
+      labels = scales::label_scientific()
+    ) +
+    scale_y_log10(
+      labels = scales::label_scientific()
+    ) +
+    # Add facetting by feeding interaction type
+    # All interactions in rows, single column
+    facet_grid(Type.of.feeding.interaction ~ .) +
+    # Add labels
+    labs(
+      x = "Prey Mass in grams",
+      y = "Predator mass in grams",
+      color = "Predator.lifestage"
+    ) +
+    # Add theme
+    theme_bw() +
+    theme(
+      legend.position = "bottom"
+    )
+
+# Save as PDF
+ggsave("../results/PP_Regress.pdf", p, width = 5, height = 20)
+
+
+# Get unique grouping combinations for regression analysis
+# and filter to only those with more than 2 data points
+unique_groups <- data_for_plot %>%
+  filter(n() > 2) %>% 
+  distinct(Type.of.feeding.interaction, Predator.lifestage)
+
+results_list <- list()
+
+# iterate over each unique group
+for (i in 1:nrow(unique_groups)) {
+  
+  current_type <- unique_groups$Type.of.feeding.interaction[i]
+  current_lifestage <- unique_groups$Predator.lifestage[i]
+  
+  # get subset of data for current group
+  subset_df <- data_for_plot %>%
+    filter(
+      Type.of.feeding.interaction == current_type,
+      Predator.lifestage == current_lifestage
+    )
+    
+  # double check we have enough data points
+  if (nrow(subset_df) > 2) {
+    
+    # Get the linear model
+    model <- lm(log10(Predator.mass.g) ~ log10(Prey.mass.g), data = subset_df)
+    
+    # Using broom to get tidy coefficients and glance stats
+    coeffs <- broom::tidy(model)
+    glance_stats <- broom::glance(model)
+    
+    intercept_val <- coeffs$estimate[coeffs$term == "(Intercept)"]
+    slope_val <- coeffs$estimate[coeffs$term == "log10(Prey.mass.g)"]
+    r_squared_val <- glance_stats$r.squared
+    f_stat_val <- glance_stats$statistic
+    p_val <- glance_stats$p.value
+    
+    # Get result row as data frame
+    result_row <- data.frame(
+      Type.of.feeding.interaction = current_type,
+      Predator.lifestage = current_lifestage,
+      intercept = intercept_val,
+      slope = slope_val,
+      r.squared = r_squared_val,
+      statistic = f_stat_val,
+      p.value = p_val
+    )
+    
+    # Append the result row to the list
+    results_list[[i]] <- result_row
+  }
+}
+
+# Get final results table by binding all rows together
+final_results_table <- dplyr::bind_rows(results_list)
+
+
+write.csv(
+  final_results_table, 
+  file = "../results/PP_Regress_Results_forloop.csv", 
+  row.names = FALSE
+)
+
+**********
+
+Output (first 500 chars):
+
+**********
+
+**********
+Errors:
+**********
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+`geom_smooth()` using formula = 'y ~ x'
+Warning messages:
+1: In qt((1 - level)/2, df) : NaNs produced
+2: In max(ids, na.rm = TRUE) :
+  no non-missing arguments to max; returning -Inf
+Error: object 'data_for_plot' not found
+Execution halted
+
+**********
+======================================================================
+Script: Girko.R
+
+Contents:
+
+**********
+require(ggplot2)
+
+build_ellipse <- function(hradius, vradius){ # function that returns an ellipse
+  npoints = 250
+  a <- seq(0, 2 * pi, length = npoints + 1) # create points
+  x <- hradius * cos(a) # horizontal radius
+  y <- vradius * sin(a) # vertical radius
+  return(data.frame(x = x, y = y))  # use points to build a ellipse
+}
+
+N <- 250 # Assign size of the matrix
+
+M <- matrix(rnorm(N * N), N, N) # Build the matrix
+
+eigvals <- eigen(M)$values # Find the eigenvalues
+
+eigDF <- data.frame("Real" = Re(eigvals), "Imaginary" = Im(eigvals)) # Build a dataframe
+
+my_radius <- sqrt(N) # The radius of the circle is sqrt(N)
+
+ellDF <- build_ellipse(my_radius, my_radius) # Dataframe to plot the ellipse
+
+names(ellDF) <- c("Real", "Imaginary") # rename the columns
+
+# plot the eigenvalues
+p <- ggplot(eigDF, aes(x = Real, y = Imaginary))
+p <- p +
+  geom_point(shape = I(3)) +
+  theme(legend.position = "none")
+
+# now add the vertical and horizontal line
+p <- p + geom_hline(aes(yintercept = 0))
+p <- p + geom_vline(aes(xintercept = 0))
+
+# finally, add the ellipse
+p <- p + geom_polygon(data = ellDF, aes(x = Real, y = Imaginary, alpha = 1/20, fill = "red"))
+
+ggsave("../results/Girko.pdf", plot = p)
+**********
+
+Output (first 500 chars):
+
+**********
+
+**********
+Errors:
+**********
+Loading required package: ggplot2
+Saving 7 x 7 in image
+
+**********
+======================================================================
+Script: MyBars.R
+
+Contents:
+
+**********
+a <- read.table("../data/Results.txt", header = TRUE)
+head(a)
+
+a$ymin <- rep(0, dim(a)[1]) # append a column of zeros
+
+# Print the first linerange
+p <- ggplot(a)
+p <- p + geom_linerange(data = a, aes(
+                          x = x,
+                          ymin = ymin,
+                          ymax = y1,
+                          size = (0.5)
+                          ),
+                        colour = "#E69F00",
+                        alpha = 1/2, show.legend = FALSE)
+
+# Print the second linerange
+p <- p + geom_linerange(data = a, aes(
+                          x = x,
+                          ymin = ymin,
+                          ymax = y2,
+                          size = (0.5)
+                          ),
+                        colour = "#56B4E9",
+                        alpha = 1/2, show.legend = FALSE)
+
+# Print the third linerange:
+p <- p + geom_linerange(data = a, aes(
+                          x = x,
+                          ymin = ymin,
+                          ymax = y3,
+                          size = (0.5)
+                          ),
+                        colour = "#D55E00",
+                        alpha = 1/2, show.legend = FALSE)
+
+# Annotate the plot with labels:
+p <- p + geom_text(data = a, aes(x = x, y = -500, label = Label))
+
+# now set the axis labels, remove the legend, and prepare for bw printing
+p <- p + scale_x_continuous("My x axis",
+                            breaks = seq(3, 5, by = 0.05)) + 
+                            scale_y_continuous("My y axis") + 
+                            theme_bw() + 
+                            theme(legend.position = "none") 
+
+ggsave("../results/MyBars.pdf", plot = p)
+**********
+
+Output (first 500 chars):
+
+**********
+         x   y1   y2 y3 Label
+1 3.515424 4320 4320  0  <NA>
+2 3.533984 2160 2160  0  <NA>
+3 3.557647 4320 4320  0  <NA>
+4 3.569953 4320 4320  0  <NA>
+5 3.578984 8640 8640  0  <NA>
+6 3.585665 2160 2160  0  <NA>
+
+**********
+Errors:
+**********
+Error in ggplot(a) : could not find function "ggplot"
+Execution halted
+
+**********
+======================================================================
+Script: plotLin.R
+
+Contents:
+
+**********
+x <- seq(0, 100, by = 0.1)
+y <- -4. + 0.25 * x +
+  rnorm(length(x), mean = 0., sd = 2.5)
+
+# and put them in a dataframe
+my_data <- data.frame(x = x, y = y)
+
+# perform a linear regression
+my_lm <- summary(lm(y ~ x, data = my_data))
+
+# plot the data
+p <-  ggplot(my_data, aes(x = x, y = y,
+                          colour = abs(my_lm$residual))
+             ) +
+  geom_point() +
+  scale_colour_gradient(low = "black", high = "red") +
+  theme(legend.position = "none") +
+  scale_x_continuous(
+    expression(alpha^2 * pi / beta * sqrt(Theta)))
+
+# add the regression line
+p <- p + geom_abline(
+  intercept = my_lm$coefficients[1][1],
+  slope = my_lm$coefficients[2][1],
+  colour = "red")
+# throw some math on the plot
+p <- p + geom_text(aes(x = 60, y = 0,
+                       label = "sqrt(alpha) * 2* pi"), 
+                       parse = TRUE, size = 6, 
+                       colour = "blue")
+
+ggsave("../results/MyLinReg.pdf", plot = p)
+**********
+
+Output (first 500 chars):
+
+**********
+
+**********
+Errors:
+**********
+Error in ggplot(my_data, aes(x = x, y = y, colour = abs(my_lm$residual))) : 
+  could not find function "ggplot"
+Execution halted
+
+**********
+
+======================================================================
+FEEDBACK SUMMARY
+======================================================================
+
+Scripts tested: 59
+Scripts successful: 47
+Scripts with errors: 12
+Warnings/Notes: 1
+
+IMPORTANT DEBUGGING GUIDANCE:
+------------------------------
+
+Please review all warnings and errors, and your directory structure based on the above log.
+
+Ask yourself: Why did I not get these warnings or errors on my machine when I tested my code?
+Common reasons for environment differences:
+
+• File paths: Your local machine may have different directory structures
+• Dependencies: Missing packages or different versions
+• File permissions: Scripts may not be executable on the testing server
+• Case sensitivity: Linux systems are case-sensitive (your laptop may not be)
+• Working directory: Scripts may assume they run from a specific location
+• Input files: Required data files may be missing or in wrong locations
+
+Debugging steps:
+1. Test your code in a clean environment (fresh directory)
+2. Check all file paths are relative and correct
+3. Verify all required files are present and properly named
+4. Test on a case-sensitive system if possible
+5. Run your scripts from different directories to check robustness
+
+Fix these issues and test again. Good debugging skills are essential for scientific computing!
+
