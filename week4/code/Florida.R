@@ -18,7 +18,7 @@ ggsave("../data/FloridaTemp.png", plot = p1, width = 8, height = 6)
 
 
 correlation_coefficient <- cor(ats$Year, ats$Temp)
-print(correlation_coefficient)
+# print(correlation_coefficient)
 # 0.5331784
 
 set.seed(12345)  # set seed for reproducibility

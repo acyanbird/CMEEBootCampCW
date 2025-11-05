@@ -1,4 +1,4 @@
-require(ggplot2)
+library(ggplot2)
 
 build_ellipse <- function(hradius, vradius){ # function that returns an ellipse
   npoints = 250
@@ -35,4 +35,4 @@ p <- p + geom_vline(aes(xintercept = 0))
 # finally, add the ellipse
 p <- p + geom_polygon(data = ellDF, aes(x = Real, y = Imaginary, alpha = 1/20, fill = "red"))
 
-ggsave("../results/Girko.pdf", plot = p)
+suppressMessages(ggsave("../results/Girko.pdf", plot = p))

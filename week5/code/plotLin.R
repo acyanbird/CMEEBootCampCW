@@ -1,3 +1,5 @@
+library(ggplot2)
+
 x <- seq(0, 100, by = 0.1)
 y <- -4. + 0.25 * x +
   rnorm(length(x), mean = 0., sd = 2.5)
@@ -24,9 +26,9 @@ p <- p + geom_abline(
   slope = my_lm$coefficients[2][1],
   colour = "red")
 # throw some math on the plot
-p <- p + geom_text(aes(x = 60, y = 0,
-                       label = "sqrt(alpha) * 2* pi"), 
+p <- p + annotate("text", x = 60, y = 0,
+                       label = "sqrt(alpha) * 2* pi", 
                        parse = TRUE, size = 6, 
                        colour = "blue")
 
-ggsave("../results/MyLinReg.pdf", plot = p)
+suppressMessages(ggsave("../results/MyLinReg.pdf", plot = p))

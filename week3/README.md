@@ -37,3 +37,7 @@ Firstly it define a function doit to get mean of sample over input value. But on
 ### `Vectorize2.R`
 
 It first defining a slow function stochrick that uses inefficient nested loops. It then defines a much faster function stochrickvect that achieves the same result by vectorizing the calculations. It removing the inner loop, and processing all populations simultaneously for each year.
+
+### Fix error
+
+I forgot to add gitkeep to result directory.

@@ -1,6 +1,8 @@
 library(ggplot2)
 library(dplyr)
 library(scales) # use 10^x format on log axes
+suppressPackageStartupMessages(library(tidyverse))
+
 
 MyDF <- read.csv("../data/EcolArchives-E089-51-D1.csv", stringsAsFactors = FALSE)
 
@@ -51,37 +53,42 @@ ggsave("../results/PP_Regress.pdf", p, width = 5, height = 20)
 
 # Get unique grouping combinations for regression analysis
 # and filter to only those with more than 2 data points
-unique_groups <- data_for_plot %>%
-  filter(n() > 2) %>% 
-  distinct(Type.of.feeding.interaction, Predator.lifestage)
+unique_groups <- MyDF %>%
+  count(Type.of.feeding.interaction, Predator.lifestage) %>%
+  filter(n > 2) %>%
+  select(Type.of.feeding.interaction, Predator.lifestage)
+
+print(unique_groups)
+print(nrow(unique_groups))
 
 results_list <- list()
 
 # iterate over each unique group
-for (i in 1:nrow(unique_groups)) {
+for (i in seq_len(nrow(unique_groups))) {
   
   current_type <- unique_groups$Type.of.feeding.interaction[i]
   current_lifestage <- unique_groups$Predator.lifestage[i]
-  
-  # get subset of data for current group
-  subset_df <- data_for_plot %>%
-    filter(
-      Type.of.feeding.interaction == current_type,
-      Predator.lifestage == current_lifestage
-    )
-    
+
+  print(current_type); print(current_lifestage)
+
+  subset_df <- MyDF %>%
+    filter(Type.of.feeding.interaction == current_type,
+           Predator.lifestage == current_lifestage,
+           !is.na(Prey.mass), !is.na(Predator.mass),
+           Prey.mass > 0, Predator.mass > 0)
+               
   # double check we have enough data points
   if (nrow(subset_df) > 2) {
     
     # Get the linear model
-    model <- lm(log10(Predator.mass.g) ~ log10(Prey.mass.g), data = subset_df)
+    model <- lm(log10(Predator.mass) ~ log10(Prey.mass), data = subset_df)
     
     # Using broom to get tidy coefficients and glance stats
     coeffs <- broom::tidy(model)
     glance_stats <- broom::glance(model)
     
     intercept_val <- coeffs$estimate[coeffs$term == "(Intercept)"]
-    slope_val <- coeffs$estimate[coeffs$term == "log10(Prey.mass.g)"]
+    slope_val <- coeffs$estimate[coeffs$term == "log10(Prey.mass)"]
     r_squared_val <- glance_stats$r.squared
     f_stat_val <- glance_stats$statistic
     p_val <- glance_stats$p.value
@@ -93,12 +100,12 @@ for (i in 1:nrow(unique_groups)) {
       intercept = intercept_val,
       slope = slope_val,
       r.squared = r_squared_val,
-      statistic = f_stat_val,
+      f.statistic = f_stat_val,
       p.value = p_val
     )
     
     # Append the result row to the list
-    results_list[[i]] <- result_row
+      results_list <- append(results_list, list(result_row))
   }
 }
 
@@ -108,6 +115,6 @@ final_results_table <- dplyr::bind_rows(results_list)
 
 write.csv(
   final_results_table, 
-  file = "../results/PP_Regress_Results_forloop.csv", 
+  file = "../results/PP_Regress_Results.csv", 
   row.names = FALSE
 )

@@ -16,9 +16,9 @@ popn <- rnorm(50) # 50 random numbers
 hist(popn)
 
 # try(, silent = FALSE)  print error messages
-result <- lapply(1:15, function(i) try(doit(popn), FALSE))
+result <- lapply(1:15, function(i) try(doit(popn), silent = TRUE))
 
 result <- vector("list", 15) #Preallocate/Initialize
 for(i in 1:15) {
-  result[[i]] <- try(doit(popn), FALSE)
+  result[[i]] <- try(doit(popn), silent = TRUE)
 }

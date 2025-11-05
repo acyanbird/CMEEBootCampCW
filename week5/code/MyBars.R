@@ -1,3 +1,5 @@
+library(ggplot2)
+
 a <- read.table("../data/Results.txt", header = TRUE)
 head(a)
 
@@ -34,8 +36,11 @@ p <- p + geom_linerange(data = a, aes(
                         colour = "#D55E00",
                         alpha = 1/2, show.legend = FALSE)
 
+# Filter the data to only those rows with non-missing, non-empty Label and x values
+label_df <- a[!is.na(a$Label) & a$Label != "" & !is.na(a$x), ]
 # Annotate the plot with labels:
-p <- p + geom_text(data = a, aes(x = x, y = -500, label = Label))
+p <- p + geom_text(data = label_df, aes(x = x, label = Label), y = -500, vjust = 1, size = 3, show.legend = FALSE)
+
 
 # now set the axis labels, remove the legend, and prepare for bw printing
 p <- p + scale_x_continuous("My x axis",
@@ -44,4 +49,4 @@ p <- p + scale_x_continuous("My x axis",
                             theme_bw() + 
                             theme(legend.position = "none") 
 
-ggsave("../results/MyBars.pdf", plot = p)
+suppressMessages(ggsave("../results/MyBars.pdf", plot = p))
