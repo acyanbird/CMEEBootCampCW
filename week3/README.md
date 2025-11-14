@@ -34,6 +34,9 @@ First defines a function to calculate the mean of a random sample drawn from a p
 ### `try.R`
 Firstly it define a function doit to get mean of sample over input value. But only with unique sample > 30 will work otherwise it would get error. Then use try (with output error message) to continue whole program without exit.
 
+### `Vectorize1.R`
+This code compares the performance of summing all elements in a 1000×1000 matrix using two approaches: a manual nested loop implementation versus R's built-in vectorized sum() function. It demonstrates that vectorized operations are significantly faster than explicit loops in R.
+
 ### `Vectorize2.R`
 
 It first defining a slow function stochrick that uses inefficient nested loops. It then defines a much faster function stochrickvect that achieves the same result by vectorizing the calculations. It removing the inner loop, and processing all populations simultaneously for each year.

@@ -20,5 +20,16 @@ Firstly turn mg into g, let all data use same unit. Then set scatter point in sh
 
 Then get every unique grouping combination. Using for loop to get each row of data that is belong to that group with more than 2 points. Using linear model and broom package to get every data require. Finally combine all data into a data frame. Write into single csv file.
 
-### PP_Dists.R
-Add one message to silent load tidyverse. `suppressPackageStartupMessages(library(tidyverse))`
+### `PP_Regress.R`
+
+### `PP_Dists.R`
+Add one message to silent load tidyverse. `suppressPackageStartupMessages(library(tidyverse))` 
+
+### `GPDD_Data.R`
+
+### `MyBars.R`
+
+### `Griko.R`
+
+### `SQLinR.R`
+

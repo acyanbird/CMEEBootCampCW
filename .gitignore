@@ -23,3 +23,5 @@ w4j/*
 *.synctex.gz
 *.toc
 *.out
+
+.ipynb
