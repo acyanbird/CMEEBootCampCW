@@ -1,12 +1,16 @@
 ## This week we continue with [Biological Computing in Python](https://mulquabio.github.io/MQB/notebooks/Python.html)
 
 ### `LV1.py`
+This script provide Lotka-Volterra predator-prey model implementation using numerical integration to simulate population dynamics. And saved results as PDF in two plots.
 
 ### `LV2.py`
+This script extend the Lotka-Volterra model by adding a carrying capacity (K).
 
 ### `profileme.py`
+This file using two function profiling performance to identify bottlenecks in Python operations. Executed once with 1000 iterations and a test string.
 
 ### `profileme2.py`
+This script is identical to profileme.py but runs with a much larger iteration count. Making it more suitable for profiling computational performance and memory usage. 
 
 
 ##  [Biological Computing in R](https://mulquabio.github.io/MQB/notebooks/R.html#)
