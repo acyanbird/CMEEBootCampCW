@@ -19,7 +19,7 @@ This script is identical to profileme.py but runs with a much larger iteration c
 The `browser()` call inside the loop enables interactive debugging. Finally, it plots the resulting exponential growth curve as a line graph.
 
 ### `Florida.R`
-Then using Florida.tex produce Florida.pdf for Florida temperature analysis.
+Analize data and draw plot also produce the csv file. Then using Florida.tex produce Florida.pdf for Florida temperature analysis.
 
 ### `try.R`
 This script demonstrates error handling in R. Using try() to catch and suppress errors when this condition fails. If an error occurs, it captures the error and allows the script to continue running instead of terminating the entire execution.
