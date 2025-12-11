@@ -38,3 +38,6 @@ This script demonstrates Girko's circular law by generating a large random matri
 
 ### `SQLinR.R`
 This script demonstrates how to create and manipulate SQLite databases in R using the sqldf package. I change the code a bit so when the table exist delete it at first.
+
+### `plotLin.R`
+It uses ggplot to draw data fit linear regression and save it to MyLinReg.pdf.

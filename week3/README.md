@@ -41,6 +41,10 @@ This code compares the performance of summing all elements in a 1000×1000 matri
 
 It first defining a slow function stochrick that uses inefficient nested loops. It then defines a much faster function stochrickvect that achieves the same result by vectorizing the calculations. It removing the inner loop, and processing all populations simultaneously for each year.
 
+### `next.R`
+Shows how the `next` statement works in R for loops. When `next` is called, execution skips the current iteration and proceeds to the next loop cycle without exiting the loop entirely.
+
+
 ### Fix error
 
 I forgot to add gitkeep to result directory.
