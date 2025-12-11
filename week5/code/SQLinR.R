@@ -4,12 +4,22 @@
 # To load the packages
 library(sqldf)
 
+
+
 # The command below opens a connection to the database.
 #If the database does not yet exist, one is created in the working directory of R.
 db <- dbConnect(SQLite(), dbname='Test.sqlite')
 
-# If you run the code multiple times, you may want to delete the existing table first
-dbSendQuery(conn = db, "DROP TABLE IF EXISTS Consumer")
+# Drop existing tables if they exist to avoid duplication
+# This allows the script to run multiple times without errors
+if (dbExistsTable(db, "Consumer")) {
+  dbRemoveTable(db, "Consumer")
+  cat("Existing 'Consumer' table removed.\n")
+}
+if (dbExistsTable(db, "Resource")) {
+  dbRemoveTable(db, "Resource")
+  cat("Existing 'Resource' table removed.\n")
+}
 
 
 # Now let's enter some data to the table
