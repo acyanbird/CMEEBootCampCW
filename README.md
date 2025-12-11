@@ -40,3 +40,4 @@ Each week's materials follow a consistent structure, containing `code`, `data`, 
  This week continue with  [R programming](https://mulquabio.github.io/MQB/notebooks/R.html#) and [Data Management and Visualization](https://mulquabio.github.io/MQB/notebooks/Data_R.html) until the first practical.
 
 ### Week 5
+This week is the final part. Doing work from [Data Management and Visualization](https://mulquabio.github.io/MQB/notebooks/Data_R.html)
